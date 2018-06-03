@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace CandyUcab\Http\Controllers;
 
 use Illuminate\Http\Request;
 //definiendo ubicacon del modelo
-use App\Producto;
+use CandyUcab\Producto;
 
 class ProductoController extends Controller
 {

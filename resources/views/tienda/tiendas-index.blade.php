@@ -37,8 +37,9 @@
                 </div>
                 </div>
                 </div>
+                @stop
 
-
-
+@section('media')
+<a class="btn btn-primary btn-lg botoncito" href="/productos/create">Crear Tienda</a>
 
   @stop

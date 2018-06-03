@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace CandyUcab\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Tienda;
+use CandyUcab\Tienda;
 
 class TiendaController extends Controller
 {
@@ -40,16 +40,16 @@ class TiendaController extends Controller
     {
         $tienda= new Tienda();
         //asignando valores pasado por el formulario
-        $tienda->t_cod=$request->input(t_cod);
-        $tienda->t_nombre=$request->input(t_nombre);
-        $tienda->t_tipotamano=$request->input(t_tipotamano);
-        $tienda->fk_lugar=$request->input(fk_lugar);
+        $tienda->t_cod=$request->input('t_cod');
+        $tienda->t_nombre=$request->input('t_nombre');
+        $tienda->t_tipotamano=$request->input('t_tipotamano');
+        $tienda->fk_lugar=$request->input('fk_lugar');
         //guardando en la BD
         $tienda->save();
         //ver si esto se puede acomodar
-        $tienda=  Tienda::all();
+        $tiendas=  Tienda::all();
         //le paso a la vista todos los productos enla BD
-        return view ('tienda.tiendas-index',compact('tienda'));
+        return view ('tienda.tiendas-index',compact('tiendas'));
     }
 
     /**

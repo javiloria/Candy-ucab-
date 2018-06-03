@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace CandyUcab;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Tienda extends Model
 {
-  //definiendo que tabla se refierfe este modelo
+  //definiendo que tabla se refiere este modelo
 protected $table = 'tienda';
 //definiendo la clave primaria
-protected $primaryKey = "t_cod";
+protected $primaryKey = 't_cod';
 }

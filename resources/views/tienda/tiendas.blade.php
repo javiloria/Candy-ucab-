@@ -25,16 +25,15 @@
 		</div>
 	</div>
 
-
-
-
-
-
 							@section('central')
 							@show
 
+						</div>
+						@section('media')
+						@show
 
 
+					</div>
 	<div class="container-fluid contenedor-mapa">
 		<div class="row">
 			<div class="col-md-12">
