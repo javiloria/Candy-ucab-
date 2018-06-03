@@ -28,6 +28,6 @@ Route::get('contacto', function() {
 	return view('contacto');
 });
 
-//ruta para los controladores
+//ruta para los controladores que haran la funcion de CRUD
 Route::resource('/productos','ProductoController');
 Route::resource('/tiendas','TiendaController');
