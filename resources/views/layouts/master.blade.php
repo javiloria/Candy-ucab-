@@ -21,13 +21,13 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="/Candy-ucab-/public/"><strong><span class="logo-responsive">Candy UCAB</span></strong></a>
+	      <a class="navbar-brand" href="/"><strong><span class="logo-responsive">Candy UCAB</span></strong></a>
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav text-center">
-	        <li><a href="/Candy-ucab-/public/">Inicio</a></li>
+	        <li><a href="/">Inicio</a></li>
 	        <li class="active"><a href="productos">Productos</a></li>
 	        <li><a href="tiendas">Tiendas</a></li>
 	        <li><a href="nosotros">Nosotros</a></li>
@@ -36,8 +36,8 @@
 	      </ul>
 			<hr>
 	      <ul class="nav navbar-nav navbar-right text-center">
-	        <li><a href="#">Registro</a></li>
-	        <li><a href="#">Login</a></li>
+	        <li><a href="registro">Registro</a></li>
+	        <li><a href="login">Login</a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -47,8 +47,8 @@
 		<div class="row">
 			<div class="col-md-offset-10 col-md-2 registro-login">
 				<ul class="list-inline separacion-top login">
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Registro</a></li>
+					<li><a href="login">Login</a></li>
+					<li><a href="registro">Registro</a></li>
 				</ul>
 			</div>
 		</div>
@@ -58,10 +58,10 @@
 				<header class="menu-principal">
 					<nav>
 						<ul class="list-inline text-center">
-							<li><a class="item-menu" href="/Candy-ucab-/public/">Inicio</a></li>
+							<li><a class="item-menu" href="/">Inicio</a></li>
 							<li><a class="item-menu" href="productos">Productos</a></li>
 							<li><a class="item-menu" href="tiendas">Tiendas</a></li>
-							<li><a href="/Candy-ucab-/public/"><img class="logo" src="imgs/sweet.png" alt="Logotipo"></a></li>
+							<li><a href="/"><img class="logo" src="imgs/sweet.png" alt="Logotipo"></a></li>
 							<li><a class="item-menu" href="nosotros">Nosotros</a></li>
 							<li><a class="item-menu" href="ofertas">Ofertas</a></li>
 							<li><a class="item-menu" href="contacto">Contacto</a></li>

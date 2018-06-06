@@ -34,3 +34,19 @@ Route::get('ofertas', function() {
 Route::get('contacto', function() {
 	return view('contacto');
 });
+
+Route::get('login', function() {
+	return view('login');
+});
+
+Route::get('registro-juridico', function() {
+	return view('registro-juridico');
+});
+
+Route::get('registro-natural', function() {
+	return view('registro-natural');
+});
+
+Route::get('registro', function() {
+	return view('registro');
+});
