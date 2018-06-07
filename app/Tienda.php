@@ -10,4 +10,6 @@ class Tienda extends Model
 protected $table = 'tienda';
 //definiendo la clave primaria
 protected $primaryKey = 't_cod';
+//defininedo que no guarde fecha de creacion y actualizacion en la BD
+public $timestamps = false;
 }

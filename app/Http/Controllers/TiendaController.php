@@ -38,18 +38,35 @@ class TiendaController extends Controller
      */
     public function store(Request $request)
     {
+
+      //comprobando que lo enviado sea un archivo
+        if($request->hasFile('t_imagen'))  {
+
+            //convirtiendo en archivo la direccion
+          $file=$request->file('t_imagen');
+            //garantizando que sea un nombre unico
+          $name=time().$file->getClientOriginalName();
+          //moviendo archivo a la app
+          $file->move(public_path().'/insertado/tienda',$name);
+        }
+
+        else {
+            $name='tienda-1.jpg';
+        }
         $tienda= new Tienda();
         //asignando valores pasado por el formulario
-        $tienda->t_cod=$request->input('t_cod');
         $tienda->t_nombre=$request->input('t_nombre');
         $tienda->t_tipotamano=$request->input('t_tipotamano');
         $tienda->fk_lugar=$request->input('fk_lugar');
+        //guardando direccion de la imagen
+        $tienda->t_imagen=$name;
         //guardando en la BD
         $tienda->save();
         //ver si esto se puede acomodar
         $tiendas=  Tienda::all();
         //le paso a la vista todos los productos enla BD
         return view ('tienda.tiendas-index',compact('tiendas'));
+
     }
 
     /**
@@ -58,9 +75,10 @@ class TiendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Tienda $tienda)
     {
-        //
+      /*le estamos pasando por la url un modelo por lo que se lo pasamos a la nueva vista*/
+        return view('tienda.tiendas-show', compact('tienda'));
     }
 
     /**

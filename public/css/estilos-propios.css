@@ -397,7 +397,19 @@ a[href="https://www.youtube.com/"] {
 	.registro-login {
 		display: block;
 		text-align: right;
-		background-color: lightgreen;
+	}
+
+	.contenedor-login {
+		margin-top: 0;
+		max-width: 50%!important;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@media screen and (min-width: 725px){
+	.contenedor-login {
+		margin-bottom: 120px;
 	}
 }
 
@@ -405,7 +417,6 @@ a[href="https://www.youtube.com/"] {
 	.menu-principal {
 		display: none;
 		visibility: hidden;
-		background-color: lightgreen;
 	}
 	.navbar-default {
 		display: block;
@@ -418,5 +429,66 @@ a[href="https://www.youtube.com/"] {
 	.menusillo {
 		display: none;
 	}
+
+	.contenedor-login {
+		margin-top: 0;
+		margin-bottom: 125px;
+		max-width: 60%!important;
+		margin-left: auto;
+		margin-right: auto;
+	}
 	
+}
+
+.contenedor-fomulario {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.contenedor-fomulario .form-group {
+	margin-right: 25px;
+}
+
+.estilo-escabezado-registro {
+	margin-bottom: 50px;
+	margin-top: -35px;
+}
+
+.contenedor-tipo-usuario {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 45px;
+	flex-wrap: wrap;
+}
+
+.contenedor-usuario {
+	width: 35%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-size: 50px;
+	margin-bottom: 25px;
+}
+
+.contenedor-usuario i {
+	font-size: 150px;
+}
+
+.contenedor-usuario a {
+	color: #5ec3c0;
+	text-decoration: none;
+	transition: ease 0.3s;
+}
+
+.contenedor-usuario a:hover {
+	color: #ff91a4;
+	transition: ease 0.3s;
+}
+
+@media screen and (max-width: 600px) {
+	.contenedor-usuario {
+		width: 51%;
+	}
 }

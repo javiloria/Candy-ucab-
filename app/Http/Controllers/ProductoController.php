@@ -41,13 +41,29 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+      //comprobando que lo enviado sea un archivo
+        if($request->hasFile('p_imagen'))  {
+
+            //convirtiendo en archivo la direccion
+          $file=$request->file('p_imagen');
+            //garantizando que sea un nombre unico
+          $name=time().$file->getClientOriginalName();
+          //moviendo archivo a la app
+          $file->move(public_path().'/insertado/producto',$name);
+        }
+        //si no es archivoono manda nada colocamos la imagen por defecto
+        else {
+            $name='p1.jpg';
+        }
       //instancia de modelo Producto
       $producto= new Producto();
       //asignando valores pasado por el formulario
-      $producto->p_cod=$request->input('P_cod');
-      $producto->p_nombre=$request->input('P_nombre');
-      $producto->p_tipo=$request->input('P_tipo');
-      $producto->p_precio=$request->input('P_precio');
+      $producto->p_cod=$request->input('p_cod');
+      $producto->p_nombre=$request->input('p_nombre');
+      $producto->p_tipo=$request->input('p_tipo');
+      $producto->p_precio=$request->input('p_precio');
+      //guardando direccion de la imagen
+      $producto->p_imagen=$name;
       //guardando en la BD
       $producto->save();
       //ver si esto se puede acomodar
@@ -62,9 +78,12 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Producto $producto)
+    { /*le estamos pasando por la url un modelo por lo que se lo pasamos a la nueva vista
+      http://127.0.0.1:8000/productos/120
+      */
+
+        return view('producto.productos-show',compact('producto'));
     }
 
     /**

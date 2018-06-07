@@ -2,12 +2,12 @@
 @section('central')
 @foreach ($producto as $product)
 <div class="contenedor-producto">
-  <img src="{{asset('imgs/assets/p1.jpg')}}" alt="">
+    <!-- asignamos la ruta de la bas de datos a la impresion -->
+  <img src="{{asset('insertado/producto/'.$product->p_imagen)}}" alt="">
   <div class="descripcion-producto">
-    <h4 >{{$product->p_nombre}}</h4>
-    <span >cod: {{$product->p_cod}}</span>
-    <span >tipo: {{$product->p_tipo}}</span>
+    <h4 >nombre: {{$product->p_nombre}}</h4>
     <span >{{$product->p_precio}} Bs</span>
+      <a class="btn btn-primary btn-lg botoncito" href="/productos/{{$product->p_cod}}">ver mas...</a>
   </div>
 </div>
 @endforeach

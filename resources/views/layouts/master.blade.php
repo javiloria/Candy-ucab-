@@ -39,8 +39,8 @@
 	      </ul>
 			<hr>
 	      <ul class="nav navbar-nav navbar-right text-center">
-	        <li><a href="#">Registro</a></li>
-	        <li><a href="#">Login</a></li>
+	        <li><a href="registro">Registro</a></li>
+	        <li><a href="login">Login</a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -50,8 +50,8 @@
 		<div class="row">
 			<div class="col-md-offset-10 col-md-2 registro-login">
 				<ul class="list-inline separacion-top login">
-					<li><a href="#">Login</a></li>
-					<li><a href="#">Registro</a></li>
+					<li><a href="login">Login</a></li>
+					<li><a href="registro">Registro</a></li>
 				</ul>
 			</div>
 		</div>
