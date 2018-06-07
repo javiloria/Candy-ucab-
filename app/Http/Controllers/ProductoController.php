@@ -82,7 +82,6 @@ class ProductoController extends Controller
     { /*le estamos pasando por la url un modelo por lo que se lo pasamos a la nueva vista
       http://127.0.0.1:8000/productos/120
       */
-
         return view('producto.productos-show',compact('producto'));
     }
 
@@ -92,9 +91,10 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Producto $producto)
     {
-        //
+      /*le estamos pasando por la url un modelo por lo que se lo pasamos a la nueva vista      */
+          return view('producto.productos-edit',compact('producto'));
     }
 
     /**
@@ -104,9 +104,31 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Producto $producto)
     {
-        //
+
+        $producto->fill($request->except('p_imagen'));
+        //comprobando que lo enviado sea un archivo
+          if($request->hasFile('p_imagen'))  {
+
+              //convirtiendo en archivo la direccion
+            $file=$request->file('p_imagen');
+              //garantizando que sea un nombre unico
+            $name=time().$file->getClientOriginalName();
+            //moviendo archivo a la app
+            $file->move(public_path().'/insertado/producto',$name);
+          }
+          //si no es archivoono manda nada colocamos la imagen por defecto
+          else {
+              $name='p1.jpg';
+          }
+          //guardando direccion de la imagen
+          $producto->p_imagen=$name;
+        $producto->save();
+        //ver si esto se puede acomodar
+        $producto=  Producto::all();
+        //le paso a la vista todos los productos enla BD
+        return view ('producto.productos-index',compact('producto'));
     }
 
     /**
@@ -115,8 +137,20 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Producto $producto)
     {
-        //
+      //verificando que no sea la imagen predeterminada
+      if($producto->p_imagen != 'p1.jpg'){
+        //defiiendo la ruta de las imagenes para borrarla
+        $file_path=public_path().'/insertado/producto/'.$producto->p_imagen;
+        //borrando la imagen
+        \File::delete($file_path);
+      }
+        //borrando los datos
+      $producto->delete();
+      //devolver la vista index
+      $producto=  Producto::all();
+      //le paso a la vista todos los productos enla BD
+      return view ('producto.productos-index',compact('producto'));
     }
 }

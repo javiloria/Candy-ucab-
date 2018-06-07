@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tienda extends Model
 {
+  //definiend los atributos actualizables
+  protected $fillable= ['t_nombre','t_tipotamano','t_imagen' ];
   //definiendo que tabla se refiere este modelo
 protected $table = 'tienda';
 //definiendo la clave primaria

@@ -87,9 +87,10 @@ class TiendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Tienda $tienda)
     {
-        //
+      /*le estamos pasando por la url un modelo por lo que se lo pasamos a la nueva vista*/
+        return view('tienda.tiendas-edit', compact('tienda'));
     }
 
     /**
@@ -99,9 +100,30 @@ class TiendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Tienda $tienda)
     {
-        //
+      $tienda->fill($request->except('t_imagen'));
+      //comprobando que lo enviado sea un archivo
+        if($request->hasFile('t_imagen'))  {
+
+            //convirtiendo en archivo la direccion
+          $file=$request->file('t_imagen');
+            //garantizando que sea un nombre unico
+          $name=time().$file->getClientOriginalName();
+          //moviendo archivo a la app
+          $file->move(public_path().'/insertado/tienda',$name);
+        }
+
+        else {
+            $name='tienda-1.jpg';
+        }
+      //guardando direccion de la imagen
+      $tienda->t_imagen=$name;
+      //guadando en la BD
+      $tienda->save();
+      $tiendas=  Tienda::all();
+      //le paso a la vista todos los productos enla BD
+      return view ('tienda.tiendas-index',compact('tiendas'));
     }
 
     /**
@@ -110,8 +132,21 @@ class TiendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Tienda $tienda)
     {
-        //
+        //verificando que no sea la imagen predeterminada
+        if($tienda->t_imagen != 'tienda-1.jpg'){
+          //defiiendo la ruta de las imagenes para borrarla
+          $file_path=public_path().'/insertado/tienda/'.$tienda->t_imagen;
+          //borrando la imagen
+          \File::delete($file_path);
+        }
+        //borrando los datos
+      $tienda->delete();
+      //devolver la vista index
+      $tiendas=  Tienda::all();
+      //le paso a la vista todos los productos enla BD
+      return view ('tienda.tiendas-index',compact('tiendas'));
     }
+
 }
