@@ -19,7 +19,7 @@
 							</a>
 						</div>
 						<div class="col-md-4">
-							<a href="index.html"><img class="logo" src="imgs/sweet.png" alt="Logotipo"></a>
+							<a href="index.html"><img class="logo" src="{{asset('imgs/sweet.png')}}" alt="Logotipo"></a>
 						</div>
 						<div class="col-md-4">
 							<h3>¡Suscríbete al diario!</h3>

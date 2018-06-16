@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Exceptions;
+namespace CandyUcab\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -48,6 +48,11 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+      if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
+
+          return response()->json(['El usuario no tiene permiso para acceder a esta pagina.']);
+
+      }
         return parent::render($request, $exception);
     }
 }

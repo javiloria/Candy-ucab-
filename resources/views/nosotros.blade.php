@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<h1>Nosotros</h1>
-				<p><a href="/Candy-ucab-/public/">Inicio</a> > Nosotros</p>
+				<p><a href="/">Inicio</a> > Nosotros</p>
 			</div>
 		</div>
 	</div>
@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="row">
-					
+
 					<div class="col-md-offset-2 col-md-8">
 						<h2 class="text-center">Nuestra misión</h2>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil laboriosam, incidunt officia quisquam earum sit magnam alias ducimus id accusamus repudiandae pariatur, aliquam nesciunt, dignissimos eos nostrum odit architecto. Temporibus distinctio quidem nesciunt. Necessitatibus assumenda id sint atque tempora obcaecati!</p>
@@ -39,25 +39,25 @@
 					<div class="col-md-3">
 						<div class="contenedor-tienda">
 
-							<img class="estilo-tiendas" src="imgs/assets/tienda-1.jpg" alt="">
+							<img class="estilo-tiendas" src="{{asset('imgs/assets/tienda-1.jpg')}}" alt="">
 							<h3 class="text-center">Altos estándares</h3>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="contenedor-tienda">
-							<img class="estilo-tiendas" src="imgs/assets/tienda-1.jpg" alt="">
+							<img class="estilo-tiendas" src="{{asset('imgs/assets/tienda-1.jpg')}}" alt="">
 							<h3 class="text-center">Trabajo duro</h3>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="contenedor-tienda">
-							<img class="estilo-tiendas" src="imgs/assets/tienda-1.jpg" alt="">
+							<img class="estilo-tiendas" src="{{asset('imgs/assets/tienda-1.jpg')}}" alt="">
 							<h3 class="text-center">Productos calificados</h3>
 						</div>
 					</div>
 					<div class="col-md-3">
 						<div class="contenedor-tienda">
-							<img class="estilo-tiendas" src="imgs/assets/tienda-1.jpg" alt="">
+							<img class="estilo-tiendas" src="{{asset('imgs/assets/tienda-1.jpg')}}" alt="">
 							<h3 class="text-center">Responsabilidad</h3>
 						</div>
 					</div>
