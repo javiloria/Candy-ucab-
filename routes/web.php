@@ -55,10 +55,4 @@ Route::get('registro', function() {
 
 // Operaciones con producto
 
-Route::get('crear-producto', function() {
-	return view('operaciones-producto.crear-producto');
-});
-
-Route::get('modificar-producto', function() {
-	return view('operaciones-producto.modificar-producto');
-});
+Route::resource('productos', 'ProductosController');
