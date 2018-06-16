@@ -5,10 +5,14 @@
     <meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico|Tajawal:400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/estilos-propios.css">
+    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
+    
+    <link href="{{asset('https://fonts.googleapis.com/css?family=Pacifico|Tajawal:400,500,700')}}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/estilos-propios.css')}}">
+    <link rel="stylesheet" href="{{asset('css/estilos-carta.css')}}">
+ 
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -61,7 +65,7 @@
 							<li><a class="item-menu" href="/">Inicio</a></li>
 							<li><a class="item-menu" href="productos">Productos</a></li>
 							<li><a class="item-menu" href="tiendas">Tiendas</a></li>
-							<li><a href="/"><img class="logo" src="imgs/sweet.png" alt="Logotipo"></a></li>
+							<li><a href="/"><img class="logo" src="{{asset('imgs/sweet.png')}}" alt="Logotipo"></a></li>
 							<li><a class="item-menu" href="nosotros">Nosotros</a></li>
 							<li><a class="item-menu" href="ofertas">Ofertas</a></li>
 							<li><a class="item-menu" href="contacto">Contacto</a></li>
@@ -96,7 +100,6 @@
 
 	
 
-    <script src="js/jquery-min.js"></script>
-    <script src="js/bootstrap.js"></script>
-</body>
+    <script src="{{asset('js/jquery-min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.js')}}"></script></body>
 </html>

@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('inicio');
 });
 
+Route::resource('clientenatural', 'ClienteNaturalController');
+
 Route::get('productos', function () {
 	return view('productos');
 });

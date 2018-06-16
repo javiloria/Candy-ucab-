@@ -1,0 +1,10 @@
+//Eliminar tablas
+
+drop table clientenatural;
+drop table clientejuridico;
+drop table telefono;
+drop table contacto;
+drop table usuario;
+drop table lug_jur;
+drop table lug_con;
+drop table lugar;
