@@ -52,3 +52,13 @@ Route::get('registro-natural', function() {
 Route::get('registro', function() {
 	return view('registro');
 });
+
+// Operaciones con producto
+
+Route::get('crear-producto', function() {
+	return view('operaciones-producto.crear-producto');
+});
+
+Route::get('modificar-producto', function() {
+	return view('operaciones-producto.modificar-producto');
+});
