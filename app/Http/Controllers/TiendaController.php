@@ -24,8 +24,9 @@ class TiendaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+      $request->user()->authorizeRoles(['admin']);
       //formulario de creacion
       return view('tienda.tiendas-create');
     }
@@ -38,7 +39,7 @@ class TiendaController extends Controller
      */
     public function store(Request $request)
     {
-
+      $request->user()->authorizeRoles(['admin']);
       //comprobando que lo enviado sea un archivo
         if($request->hasFile('t_imagen'))  {
 
@@ -87,8 +88,9 @@ class TiendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tienda $tienda)
+    public function edit(Request $request,Tienda $tienda)
     {
+      $request->user()->authorizeRoles(['admin']);
       /*le estamos pasando por la url un modelo por lo que se lo pasamos a la nueva vista*/
         return view('tienda.tiendas-edit', compact('tienda'));
     }
@@ -102,6 +104,7 @@ class TiendaController extends Controller
      */
     public function update(Request $request,Tienda $tienda)
     {
+      $request->user()->authorizeRoles(['admin']);
       $tienda->fill($request->except('t_imagen'));
       //comprobando que lo enviado sea un archivo
         if($request->hasFile('t_imagen'))  {
@@ -132,8 +135,9 @@ class TiendaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tienda $tienda)
+    public function destroy(Request $request,Tienda $tienda)
     {
+        $request->user()->authorizeRoles(['admin']);
         //verificando que no sea la imagen predeterminada
         if($tienda->t_imagen != 'tienda-1.jpg'){
           //defiiendo la ruta de las imagenes para borrarla

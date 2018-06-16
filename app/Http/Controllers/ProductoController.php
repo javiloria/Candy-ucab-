@@ -27,8 +27,9 @@ class ProductoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $request->user()->authorizeRoles(['admin']);
         //formulario de creacion
         return view('producto.producto-create');
     }
@@ -41,6 +42,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
+      $request->user()->authorizeRoles(['admin']);
       //comprobando que lo enviado sea un archivo
         if($request->hasFile('p_imagen'))  {
 
@@ -91,8 +93,9 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Producto $producto)
+    public function edit(Request $request,Producto $producto)
     {
+        $request->user()->authorizeRoles(['admin']);
       /*le estamos pasando por la url un modelo por lo que se lo pasamos a la nueva vista      */
           return view('producto.productos-edit',compact('producto'));
     }
@@ -106,7 +109,7 @@ class ProductoController extends Controller
      */
     public function update(Request $request,Producto $producto)
     {
-
+      $request->user()->authorizeRoles(['admin']);
         $producto->fill($request->except('p_imagen'));
         //comprobando que lo enviado sea un archivo
           if($request->hasFile('p_imagen'))  {
@@ -137,8 +140,8 @@ class ProductoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Producto $producto)
-    {
+    public function destroy(Request $request,Producto $producto)
+    { $request->user()->authorizeRoles(['admin']);
       //verificando que no sea la imagen predeterminada
       if($producto->p_imagen != 'p1.jpg'){
         //defiiendo la ruta de las imagenes para borrarla

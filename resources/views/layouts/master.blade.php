@@ -12,6 +12,15 @@
     <link href="{{asset('https://fonts.googleapis.com/css?family=Pacifico|Tajawal:400,500,700')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/estilos-propios.css')}}">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -39,8 +48,8 @@
 	      </ul>
 			<hr>
 	      <ul class="nav navbar-nav navbar-right text-center">
-	        <li><a href="registro">Registro</a></li>
-	        <li><a href="login">Login</a></li>
+	        <li><a href="/registro">Registro</a></li>
+	        <li><a href="/login">Login</a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -50,8 +59,8 @@
 		<div class="row">
 			<div class="col-md-offset-10 col-md-2 registro-login">
 				<ul class="list-inline separacion-top login">
-					<li><a href="login">Login</a></li>
-					<li><a href="registro">Registro</a></li>
+					<li><a href="/login">Login</a></li>
+					<li><a href="/registro">Registro</a></li>
 				</ul>
 			</div>
 		</div>

@@ -1,8 +1,13 @@
+
 @extends('tienda.tiendas')
 
 @section('central')
 
-  <form action="/tiendas" method="post" enctype="multipart/form-data">
+    @php
+      $estado= DB::table('lugar')->where('l_tipo', 'Estado')->get();
+    @endphp
+
+  <form name="datos" action="/tiendas" method="post" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
       <label >Nombre</label>
@@ -15,14 +20,39 @@
 
 
     <div class="form-group">
-      <label>lugar</label>
-      <input type="text" class="form-control" name= "fk_lugar" placeholder="lugar" required>
-    </div>
-
-    <div class="form-group">
       <label>imagen</label>
       <input type="file" name= "t_imagen"  >
     </div>
+
+
+    <select  id="estadoss" onChange="rellenaCombo('datos')" >
+   		<?php
+      foreach ($estado as $estadito ) {
+
+   			echo "<option value=".$estadito->l_cod.">".$estadito->l_nombre."</option>";
+   			}
+           ?>
+          </select>
+
+          <select id="municipioss" onChange="municipio()" disabled>
+         		<?php
+              $municipio= DB::table('lugar')->where('l_tipo','Municipio')->orderBy('l_nombre','asc')->get();
+            foreach ($municipio as $municipios ) {
+
+         			echo "<option value=".$municipios->l_cod.">".$municipios->l_nombre."</option>";
+         			}
+                 ?>
+                </select>
+
+                <select name="fk_lugar" id="selecta" disabled >
+                  <?php
+                    $parroquias= DB::table('lugar')->where('l_tipo','Parroquia')->orderBy('l_nombre','asc')->get();
+                  foreach ($parroquias as $parroquia ) {
+
+                    echo "<option value=".$parroquia->l_cod.">".$parroquia->l_nombre."</option>";
+                    }
+                       ?>
+                      </select>
 
     <button type="submit" class="btn btn-primary">crear</button>
   </form>

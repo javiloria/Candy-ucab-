@@ -8,9 +8,12 @@
     <span >tipo: {{$producto->p_tipo}}</span>
     <span >{{$producto->p_precio}} Bs</span>
   </div>
+  @if(Auth::user()->hasRole('admin'))
+
     <a class="btn btn-primary btn-lg botoncito" href="/productos/{{$producto->p_cod}}/edit">Actualizar</a>
     {!! Form::open(['route'=>['productos.destroy',$producto->p_cod],'method'=>'DELETE' ]) !!}
     {!! Form::submit('Eliminar',['class'=>'btn btn-danger']) !!}
     {!! Form::close() !!}
+  @endif
 </div>
 @stop

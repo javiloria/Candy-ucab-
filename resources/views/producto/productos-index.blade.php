@@ -13,5 +13,9 @@
 @endforeach
 @stop
 @section('media')
-<a class="btn btn-primary btn-lg botoncito" href="/productos/create">Crear Producto</a>
+  @if(Auth::user()->hasRole('admin'))
+
+    <a class="btn btn-primary btn-lg botoncito" href="/productos/create">Crear Producto</a>
+  @endif
+
 @stop

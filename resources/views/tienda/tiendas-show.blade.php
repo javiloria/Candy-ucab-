@@ -27,10 +27,12 @@
                         @endphp</span>
 
       						</div>
+                    @if(Auth::user()->hasRole('admin'))
                     <a class="btn btn-primary btn-lg botoncito" href="/tiendas/{{$tienda->t_cod}}/edit">Actualizar</a>
                     {!! Form::open(['route'=>['tiendas.destroy',$tienda->t_cod ],'method'=>'DELETE' ]) !!}
                     {!! Form::submit('Eliminar',['class'=>'btn btn-danger']) !!}
                     {!! Form::close() !!}
+                  @endif
         					</div>
       					</div>
       					</div>

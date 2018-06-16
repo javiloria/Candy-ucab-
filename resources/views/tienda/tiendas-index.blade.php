@@ -40,6 +40,7 @@
                 @stop
 
 @section('media')
+    @if(Auth::user()->hasRole('admin'))
 <a class="btn btn-primary btn-lg botoncito" href="/tiendas/create">Crear Tienda</a>
-
+@endif
   @stop
