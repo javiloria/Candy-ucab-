@@ -1,0 +1,43 @@
+Cambiando el tipo de dato de la table clientenatural
+
+ALTER TABLE clientenatural ALTER COLUMN c_n_correo TYPE varchar(50);
+
+Cambiar el nombre a una columna:
+
+ALTER TABLE nombretabla RENAME COLUMN nombre_actual TO nombre_nuevo
+
+Borrar una columna
+
+ALTER TABLE nombretabla DROP COLUMN nombre_columna
+
+Agregar columna
+
+ALTER TABLE nombretabla ADD COLUMN nombre_columna (rectricciones)
+
+Eliminarle a una columna la restriccion de no aceptar valores nulos
+
+ALTER TABLE nombretabla ALTER COLUMN nombre_columna DROP NOT NULL
+
+Modificar la columna para que apartir de ahora no acepte valores nulos
+
+ALTER TABLE nombretabla ALTER COLUMN nombre_columna SET NOT NULL
+
+Modificar el tipo de dato a una columna
+
+ALTER TABLE nombretabla ALTER COLUMN nombre_columna TYPE (tipo)
+
+Eliminar una Foreign-key constraint
+
+ALTER TABLE nombretabla DROP CONSTRAINT nombre_foreign_key_fkey
+
+Agregar una foreign-key
+
+ALTER TABLE nombretabla ADD FOREIGN KEY(nombre_columna) REFERENCES nomina(nombre_columna)
+
+Eliminar el valor que tiene por default una columna
+
+ALTER TABLE nombretabla ALTER COLUMN nombre_columna DROP default
+
+Agregar un valor por default a una columna
+
+ALTER TABLE nombretabla ALTER COLUMN nombre_columna SET DEFAULT 125

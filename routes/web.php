@@ -20,7 +20,7 @@ Route::get('contacto', function() {
 
 Route::get('registro-juridico', function() {
   return view('registro-juridico');
-});
+Route::resource('clientenatural', 'ClienteNaturalController');
 
 Route::get('registro-natural', function() {
   return view('registro-natural');
