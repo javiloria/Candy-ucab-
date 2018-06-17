@@ -11,67 +11,46 @@
 |
 */
 
-Route::get('/', function () {
-    return view('inicio');
-});
-Route::get('contacto', function() {
-  return view('contacto');
-});
+Route::view('/','inicio');
+Route::view('contacto','contacto');
 
-Route::get('registro-juridico', function() {
-  return view('registro-juridico');
+//mosca se debe camiar esto al implementarlo
+Route::view('registro-juridico', 'registro-juridico');
+
+//manejo de registro
 Route::resource('clientenatural', 'ClienteNaturalController');
+Route::view('registro', 'registro')->middleware('guest');
 
-Route::get('registro-natural', function() {
-  return view('registro-natural');
-});
+// Rutas para el login...
+Route::view('login','auth.login')->middleware('guest');
+Route::post('login', 'Auth\LoginController@login')->name('login');
 
-Route::get('registro', function() {
-  return view('registro');
-});
-
-// Authentication Routes...
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
+//manejando el logout
+Route::get('logout', 'LogoutController@index')->name('logout');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-// Registration Routes...
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
 
 // Password Reset Routes...
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('nosotros', function() {
-  return view('nosotros');
-});
+Route::view('nosotros', 'nosotros');
 
 //rutas que necesita estar autenticado
 Route::group(['middleware' => ['auth']], function() {
-Route::get('ofertas', function() {
-  return view('ofertas');
-});
-    /*Route::get('login', function() {
-    	return view('login');
-    });
-    */
-  //CRUD DE manejo de roles y permisos
+
+    Route::view('ofertas','ofertas');
+
+    //CRUD DE manejo de roles y permisos
     Route::resource('roles','RoleController');
     Route::resource('users','UserController');
 
     //ruta para los controladores que haran la funcion de CRUD
     Route::resource('/productos','ProductoController');
     Route::resource('/tiendas','TiendaController');
+    Route::view('excel','subirExcell');
+    //importar archivo excell
+    Route::post('/import-excel', 'ExcelController@importUsers');
 
-
-});
-
-//importar archivo excell
-Route::post('/import-excel', 'ExcelController@importUsers');
-
-Route::get('excel',function() {
-  return view('subirExcell');
 });

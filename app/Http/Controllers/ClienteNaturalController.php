@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace CandyUcab\Http\Controllers;
 
-use App\ClienteNatural;
-use App\Telefono;
-use App\Usuario;
+use CandyUcab\ClienteNatural;
+use CandyUcab\Telefono;
+use CandyUcab\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use CandyUcab;
+use CandyUcab\Role;
+use Illuminate\Support\Facades\Hash;
+
 
 class ClienteNaturalController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
 
@@ -57,14 +57,17 @@ class ClienteNaturalController extends Controller
 
         $usuario = new Usuario();
         $usuario->u_username = $request->input('u_username');
-        $usuario->u_password = $request->input('u_password');
+        $usuario->u_password = Hash::make($request->input('u_password'));
         $usuario->fk_clienat = $request->input('c_n_rif');
+        $usuario
+      ->roles()
+      ->attach(Role::where('name', 'user')->first());
 
         $clientenatural->save();
         $telefono->save();
         $usuario->save();
 
-        return 'Saved';
+        return View('login');
     }
 
     /**

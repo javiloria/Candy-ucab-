@@ -5,8 +5,7 @@
 @section('contenido')
 
 <div class="container">
-	<form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-		  @csrf
+
 	<div class="row">
 		<div class="col-md-offset-3 col-md-6">
 			<div class="contenedor-fomulario">
@@ -73,7 +72,6 @@
 	            </div>
 		</div>
 	</div>
-</form>
 </div>
 
 @stop

@@ -26,7 +26,7 @@ insert into Lugar (l_cod, l_nombre, l_tipo) values
 (1625, 'Dependencias Federales', 'Estado');
 
 
-insert into Lugar (id,fk_Lugar, tipo, nombre) values
+insert into Lugar (l_cod,fk_Lugar, l_tipo,l_nombre) values
 (1,1601,  'Municipio','Alto Orinoco'),
 (2,1601,  'Municipio','Atabapo'),
 (3,1601,  'Municipio','Atures'),
@@ -363,7 +363,7 @@ insert into Lugar (id,fk_Lugar, tipo, nombre) values
 (461,1623, 'Municipio', 'Valmore Rodríguez'),
 (462,1624, 'Municipio', 'Libertador');
 
-insert into Lugar (id, fk_Lugar, tipo, nombre ) values
+insert into Lugar (l_cod, fk_Lugar, l_tipo, l_nombre ) values
 (463, 1,  'Parroquia','Alto Orinoco'),
 (464, 1,  'Parroquia','Huachamacare Acanaña'),
 (465, 1,  'Parroquia','Marawaka Toky Shamanaña'),

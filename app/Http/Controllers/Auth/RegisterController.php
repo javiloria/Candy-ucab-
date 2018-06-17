@@ -2,7 +2,7 @@
 
 namespace CandyUcab\Http\Controllers\Auth;
 
-use CandyUcab\User;
+use CandyUcab\Usuario;
 use CandyUcab\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,6 +50,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+      //validndolos datos
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -65,16 +66,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user= User::create([
+        $user= Usuario::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            //encryptando el password
             'password' => Hash::make($data['password']),
         ]);
 
         $user
     ->roles()
     ->attach(Role::where('name', 'user')->first());
-
-return $user;
+return redirect('/login');
     }
 }
