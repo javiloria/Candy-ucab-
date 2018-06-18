@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace CandyUcab\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

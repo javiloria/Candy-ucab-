@@ -7,7 +7,7 @@
 		<div class="row">
 			<div class="col-md-12 text-center">
 				<h1>Contacto</h1>
-				<p><a href="/Candy-ucab-/public/">Inicio</a> > Contacto</p>
+				<p><a href="/">Inicio</a> > Contacto</p>
 			</div>
 		</div>
 	</div>
@@ -57,7 +57,7 @@
 				      <input type="password" class="form-control" id="inputPassword3" placeholder="Apellido">
 				    </div>
 				  </div>
-				  
+
 				<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 				 	<textarea placeholder="Mensaje" class="form-control" rows="3"></textarea>
@@ -92,7 +92,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h2 class="text-center">Ubicación de la fabrica principal</h2>
-				 <div id="map">			 	
+				 <div id="map">
 				 	<script>
 				      var map;
 				      function initMap() {
@@ -102,9 +102,9 @@
 				        });
 				      }
 				    </script>
-				    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJffTv8CU_cbNd3lUyJvODIsYc5iJG44U&callback=initMap"
+				    <script src="{{asset('https://maps.googleapis.com/maps/api/js?key=AIzaSyDJffTv8CU_cbNd3lUyJvODIsYc5iJG44U&callback=initMap')}}"
 				    async defer></script>
-				 </div>				    
+				 </div>
 			</div>
 		</div>
 	</div>

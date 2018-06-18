@@ -7,7 +7,7 @@
 	<div class="modal-dialog contenedor-login">
 	    <div class="modal-content">
 	        <div class="modal-header">
-	          <h1 class="text-center">Inicio de sesión</h1>
+	          <h1 class="text-center">Inicio de sesiósssssn</h1>
 	        </div>
 	         <div class="modal-body">
 	             <div class="form-group">

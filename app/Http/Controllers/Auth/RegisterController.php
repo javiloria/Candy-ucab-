@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace CandyUcab\Http\Controllers\Auth;
 
-use App\User;
-use App\Http\Controllers\Controller;
+use CandyUcab\Usuario;
+use CandyUcab\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use CandyUcab;
+use CandyUcab\Role;
 
 class RegisterController extends Controller
 {
@@ -28,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/productos';
 
     /**
      * Create a new controller instance.
@@ -48,6 +50,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+      //validndolos datos
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -59,14 +62,20 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \CandyUcab\User
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user= Usuario::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            //encryptando el password
             'password' => Hash::make($data['password']),
         ]);
+
+        $user
+    ->roles()
+    ->attach(Role::where('name', 'user')->first());
+return redirect('/login');
     }
 }

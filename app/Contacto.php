@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace CandyUcab;
 
 use Illuminate\Database\Eloquent\Model;
 

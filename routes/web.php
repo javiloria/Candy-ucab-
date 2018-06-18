@@ -11,44 +11,46 @@
 |
 */
 
-Route::get('/', function () {
-    return view('inicio');
-});
+Route::view('/','inicio');
+Route::view('contacto','contacto');
 
+//mosca se debe camiar esto al implementarlo
+Route::view('registro-juridico', 'registro-juridico');
+
+//manejo de registro
 Route::resource('clientenatural', 'ClienteNaturalController');
+Route::view('registro', 'registro')->middleware('guest');
 
-Route::get('productos', function () {
-	return view('productos');
-});
+// Rutas para el login...
+Route::view('login','auth.login')->middleware('guest');
+Route::post('login', 'Auth\LoginController@login')->name('login');
 
-Route::get('tiendas', function() {
-	return view('tiendas');
-});
+//manejando el logout
+Route::get('logout', 'LogoutController@index')->name('logout');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('nosotros', function() {
-	return view('nosotros');
-});
 
-Route::get('ofertas', function() {
-	return view('ofertas');
-});
+// Password Reset Routes...
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+Route::view('nosotros', 'nosotros');
 
-Route::get('contacto', function() {
-	return view('contacto');
-});
+//rutas que necesita estar autenticado
+Route::group(['middleware' => ['auth']], function() {
 
-Route::get('login', function() {
-	return view('login');
-});
+    Route::view('ofertas','ofertas');
 
-Route::get('registro-juridico', function() {
-	return view('registro-juridico');
-});
+    //CRUD DE manejo de roles y permisos
+    Route::resource('roles','RoleController');
+    Route::resource('users','UserController');
 
-Route::get('registro-natural', function() {
-	return view('registro-natural');
-});
+    //ruta para los controladores que haran la funcion de CRUD
+    Route::resource('/productos','ProductoController');
+    Route::resource('/tiendas','TiendaController');
+    Route::view('excel','subirExcell');
+    //importar archivo excell
+    Route::post('/import-excel', 'ExcelController@importUsers');
 
-Route::get('registro', function() {
-	return view('registro');
 });
