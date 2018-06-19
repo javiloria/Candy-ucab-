@@ -53,4 +53,20 @@ Route::group(['middleware' => ['auth']], function() {
     //importar archivo excell
     Route::post('/import-excel', 'ExcelController@importUsers');
 
+    Route::get('/plataforma', function() {
+        return view('plataforma.index');
+    });
+
+    Route::get('perfil-cliente', function() {
+        return view('plataforma.profile');
+    });
+
+    Route::get('en-blanco', function() {
+        return view('plataforma.blank');
+    });
+
+    Route::get('tabla-basica', function() {
+        return view('plataforma.basic-table');
+    });
+
 });
