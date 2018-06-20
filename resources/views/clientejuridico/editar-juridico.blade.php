@@ -10,7 +10,7 @@
 			<div class="contenedor-fomulario">
 				<h1 class="text-center estilo-escabezado-registro titulos-principales">Registro de usuario juridico</h1>
 				
-			<form action="/clientejuridico" class="form-group" method="POST" multipart/form-data">
+			<form action="/clientejuridico/{{$clientejuridico->fk_usuario}}" class="form-group" method="POST" enctype = "multipart/form-data">
 			@method('PUT')
 			@csrf
 
@@ -44,7 +44,6 @@
 					<input type="file" name= "c_j_avatar" value= "{{$clientejuridico->c_j_avatar}}" />
 			</div>
 
-			
 			<div class="form-group">
 			<button type="submit" class="btn btn-block btn-lg btn-primary">Actualización</button>	
 			</div>

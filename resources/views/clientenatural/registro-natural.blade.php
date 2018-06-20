@@ -27,7 +27,7 @@
 
 					<div id="dynamicDiv" class="form-group">
 					<p>
-						<input type="text" class="form-control input-lg" name= "telefono[]" placeholder="Telefono"/>
+						<input id="numero" type="text" class="form-control input-lg" name= "telefono[]" placeholder="Telefono"/>
 			        </p>
 			        </div>
 
@@ -71,14 +71,12 @@
 						<label for="">Avatar: </label>
 						<input type="file" name= "c_n_avatar" />
 				</div>
-
-			</div>
 	
 			<div class="contenedor-formulario">
 				<label for=""> Registro Usuario</label>
 					<div class="col-md-12">
 						<div class="form-group">
-						    <input id="usuario" type="text" class="form-control input-lg" name="u_username" placeholder="Username" required/>
+						    <input id="usuario" type="text" class="form-control input-lg" name="u_username" placeholder="Username" />
 						    
 						    <input id = "password" type="password" class="form-control input-lg" name="u_password" placeholder="Contraseña"/>
 						</div>
@@ -117,6 +115,5 @@
 	</div>
 </div>
 
-<script src="{{ asset('js/validaciones.js') }}"></script>
-
+ <script src="{{ asset('/js/validaciones.js') }}"></script>
 @stop

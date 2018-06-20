@@ -13,6 +13,8 @@ class ClienteJuridico extends Model
     //definiendo que no se guarde la fecha de creacion y actualizacion
     public $timestamps = false;
 
+    protected $fillable = ['c_j_razonsocial','c_j_dcomercial', 'c_j_capital', 'c_j_correo' ,'c_j_sitioweb','c_j_avatar']; 
+
     /**
 	 * Get the route key for the model.
 	 *

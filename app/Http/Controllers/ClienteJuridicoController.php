@@ -52,15 +52,16 @@ class ClienteJuridicoController extends Controller
         if($request->hasFile('c_j_avatar')){
             $file = $request->file('c_j_avatar');
             $name = time().$file->getClientOriginalName();
+            $clientejuridico->c_j_avatar = $name;
             $file->move(public_path().'/images/', $name);
         }
 
         $clientejuridico->c_j_rif = $request->input('c_j_rif');
         $clientejuridico->c_j_razonsocial = $request->input('c_j_razonsocial');
         $clientejuridico->c_j_dcomercial = $request->input('c_j_dcomercial');
+        $clientejuridico->c_j_sitioweb = $request->input('c_j_sitioweb');
         $clientejuridico->c_j_capital = $request->input('c_j_capital');
         $clientejuridico->c_j_correo = $request->input('c_j_correo');
-        $clientejuridico->c_j_avatar = $name;
         $clientejuridico->fk_usuario = $request->input('u_username');
 
         $lug_jur = new Lug_Jur();
@@ -130,7 +131,7 @@ class ClienteJuridicoController extends Controller
      */
     public function edit(ClienteJuridico $clientejuridico)
     {
-        //
+        return view('clientejuridico.editar-juridico', compact('clientejuridico'));
     }
 
     /**
@@ -140,9 +141,21 @@ class ClienteJuridicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ClienteJuridico $clientejuridico)
     {
-        //
+        $clientejuridico->fill($request->except('c_j_avatar'));
+             
+        if($request->hasFile('c_j_avatar')){
+            $file = $request->file('c_j_avatar');
+            $name = time().$file->getClientOriginalName();
+            $clientejuridico->c_j_avatar = $name;
+            $file->move(public_path().'/images/', $name);
+        }
+
+        $clientejuridico->save();
+        $clientesjuridicos = ClienteJuridico::all();
+
+        return view('clientejuridico.index-juridico', compact('clientesjuridicos'));
     }
 
     /**
@@ -151,8 +164,31 @@ class ClienteJuridicoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ClienteJuridico $clientejuridico)
     {
-        //
+        
+        $lug_jur = \DB::table('lug_jur')->where('lj_clientejuridico', $clientejuridico->c_j_rif)->delete();
+
+        $jurs_cons = \DB::table('jur_con')->where('jc_clientejuridico', $clientejuridico->c_j_rif)->get();
+
+        $jurs_con = \DB::table('jur_con')->where('jc_clientejuridico', $clientejuridico->c_j_rif)->delete();
+
+        foreach ($jurs_cons as $jur_con) {
+            $contacto = \DB::table('contacto')->where('co_id', $jur_con->jc_contacto)->delete();
+        }
+
+        $telefonos = \DB::table('telefono')->where('fk_clientejuridico', $clientejuridico->c_j_rif)->delete();
+
+        $file_path = public_path().'/images/'.$clientejuridico->c_j_avatar;
+        \File::delete($file_path);
+        $fk_usuario = $clientejuridico->fk_usuario;
+        $clientejuridico->delete();
+
+        $role_usuario = \DB::table('role_usuario')->where('u_username', $fk_usuario)->delete();
+
+        $usuario = \DB::table('usuario')->where('u_username', $fk_usuario)->delete();
+
+        $clientesjuridicos = ClienteJuridico::all();
+        return view('clientejuridico.index-juridico', compact('clientesjuridicos'));
     }
 }

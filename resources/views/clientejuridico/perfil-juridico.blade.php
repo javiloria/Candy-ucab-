@@ -38,7 +38,7 @@
 		</h5>
 		<a href="/clientejuridico/{{$clientejuridico->fk_usuario}}/edit" class="btn btn-primary">
 		Actualizar
-		</a> 
+		</a> <p> </p>
 
 		{!! Form::open(['route'=>['clientejuridico.destroy',$clientejuridico->fk_usuario],'method'=>'DELETE' ]) !!}
     	{!! Form::submit('Eliminar',['class'=>'btn btn-danger']) !!}
