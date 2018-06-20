@@ -1,6 +1,7 @@
+--insert roles
 insert into roles values(1,'admin','Administrador');
 insert into roles values(2,'user','Usuario');
-
+--insert de productos
   insert into Producto(p_cod,p_nombre,p_tipo,p_precio,p_imagen,p_descripcion,p_cantidad,updated_at,created_at) values
 (1,'Chupetas Rimbombin','Chupeta',70000.99 ,'rimbombin.jpg','El famoso caramelo con palo ideado por Enric Bernat en 1958 sigue de actualidad en nuestros días. Personajes como Johan Cruyff, Rivaldo, etc',10000,null,null),
 (2,'Ricolin','caramelo',5500 ,'ricolin.jpg','Los primeros Ricolin se fabricaron en la década de 1990, como supresores de la tos. Hoy en día Ricolin es la marca líder en el segmento de los caramelos de bolsillo en Venezuela',5505,null,null),
