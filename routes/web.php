@@ -21,6 +21,8 @@ Route::view('registro-juridico', 'registro-juridico');
 Route::resource('clientenatural', 'ClienteNaturalController');
 Route::view('registro', 'registro')->middleware('guest');
 
+Route::resource('clientejuridico', 'ClienteJuridicoController');
+
 // Rutas para el login...
 Route::view('login','auth.login')->middleware('guest');
 Route::post('login', 'Auth\LoginController@login')->name('login');
