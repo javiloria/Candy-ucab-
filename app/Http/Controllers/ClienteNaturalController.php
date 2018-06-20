@@ -17,10 +17,9 @@ class ClienteNaturalController extends Controller
     public function index()
     {
 
-        $clientenatural = ClienteNatural::all();
-        $usuarios = Usuario::all();
+        $clientesnaturales = ClienteNatural::all();
 
-        return view('clientenatural.index-natural', compact('clientenatural'));
+        return view('clientenatural.index-natural', compact('clientesnaturales'));
     }
 
     /**
@@ -42,6 +41,14 @@ class ClienteNaturalController extends Controller
     public function store(Request $request)
     {
         $clientenatural = new ClienteNatural();
+
+        if($request->hasFile('c_n_avatar')){
+            $file = $request->file('c_n_avatar');
+            $name = time().$file->getClientOriginalName();
+            $clientenatural->c_n_avatar = $name;
+            $file->move(public_path().'/images/', $name);
+        }
+
         $clientenatural->c_n_rif = $request->input('c_n_rif');
         $clientenatural->c_n_cedula = $request->input('c_n_cedula');
         $clientenatural->c_n_pnombre = $request->input('c_n_pnombre');
@@ -50,22 +57,29 @@ class ClienteNaturalController extends Controller
         $clientenatural->c_n_sapellido = $request->input('c_n_sapellido');
         $clientenatural->c_n_correo = $request->input('c_n_correo');
         $clientenatural->fk_lugar = $request->input('fk_lugar');
+        $clientenatural->fk_usuario = $request->input('u_username');
 
+/*
         $telefono = new Telefono();
         $telefono->t_numero = $request->input('t_numero');
-        $telefono->fk_clientenatural = $request->input('c_n_rif');
+        $telefono->fk_clientenatural = $request->input('c_n_rif');*/
 
         $usuario = new Usuario();
         $usuario->u_username = $request->input('u_username');
         $usuario->u_password = Hash::make($request->input('u_password'));
-    
         $usuario
       ->roles()
       ->attach(Role::where('name', 'user')->first());
 
-        $clientenatural->save();
-        $telefono->save();
         $usuario->save();
+        $clientenatural->save();
+
+        foreach ($request->telefono as $cell) {
+        $telefono = new Telefono();
+        $telefono->t_numero = $cell;
+        $telefono->fk_clientenatural = $request->input('c_n_rif');
+        $telefono->save();
+        }
 
         return View('login');
     }
@@ -76,9 +90,9 @@ class ClienteNaturalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ClienteNatural $clientenatural)
     {
-        //
+        return view('clientenatural.perfil-natural',compact('clientenatural'));
     }
 
     /**
@@ -87,9 +101,9 @@ class ClienteNaturalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ClienteNatural $clientenatural)
     {
-        //
+        return view('clientenatural.editar-natural',compact('clientenatural'));
     }
 
     /**
@@ -99,9 +113,22 @@ class ClienteNaturalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,ClienteNatural $clientenatural)
     {
-        //
+        $clientenatural->fill($request->except('c_n_avatar'));
+
+        if($request->hasFile('c_n_avatar')){
+            $file = $request->file('c_n_avatar');
+            $name = time().$file->getClientOriginalName();
+            $clientenatural->c_n_avatar = $name;
+            $file->move(public_path().'/images/', $name);
+        }
+
+        $clientenatural->save();
+
+        $clientesnaturales = ClienteNatural::all();
+
+        return view('clientenatural.index-natural', compact('clientesnaturales'));
     }
 
     /**
@@ -110,8 +137,23 @@ class ClienteNaturalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ClienteNatural $clientenatural)
     {
-        //
+
+
+        $telefonos = \DB::table('telefono')->where('fk_clientenatural', $clientenatural->c_n_rif)->delete();
+
+        $file_path = public_path().'/images/'.$clientenatural->c_n_avatar;
+        \File::delete($file_path);
+        $fk_usuario = $clientenatural->fk_usuario;
+        $clientenatural->delete();
+
+        $role_usuario = \DB::table('role_usuario')->where('u_username', $fk_usuario)->delete();
+
+        $usuario = \DB::table('usuario')->where('u_username', $fk_usuario)->delete();
+
+        $clientesnaturales = ClienteNatural::all();
+        return view('clientenatural.index-natural', compact('clientesnaturales'));
+
     }
 }

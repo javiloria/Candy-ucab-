@@ -12,6 +12,7 @@
     <link href="{{asset('https://fonts.googleapis.com/css?family=Pacifico|Tajawal:400,500,700')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
     <link rel="stylesheet" href="{{asset('css/estilos-propios.css')}}">
+    <link rel="stylesheet" href="{{asset('css/estilos-carta.css')}}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
