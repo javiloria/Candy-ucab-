@@ -41,10 +41,10 @@
 	      <ul class="nav navbar-nav text-center">
 	        <li><a href="/">Inicio</a></li>
 	        <li class="active"><a href="productos">Productos</a></li>
-	        <li><a href="tiendas">Tiendas</a></li>
-	        <li><a href="nosotros">Nosotros</a></li>
-	        <li><a href="ofertas">Ofertas</a></li>
-	        <li><a href="contacto">Contacto</a></li>
+	        <li><a href="/tiendas">Tiendas</a></li>
+	        <li><a href="/nosotros">Nosotros</a></li>
+	        <li><a href="/ofertas">Ofertas</a></li>
+	        <li><a href="/contacto">Contacto</a></li>
 	      </ul>
 			<hr>
 	      <ul class="nav navbar-nav navbar-right text-center">
@@ -59,8 +59,19 @@
 		<div class="row">
 			<div class="col-md-offset-10 col-md-2 registro-login">
 				<ul class="list-inline separacion-top login">
-					<li><a href="/login">Login</a></li>
-					<li><a href="/registro">Registro</a></li>
+@php
+//si ya inicio sesion debe mostrar en el menu para cerrar la sesion
+//forma de mezclar html con php
+if (Auth::check()) {
+  echo '<li><a href="/logout">Mi cuenta</a></li>';
+}
+else {
+  echo '<li><a href="/login">Login</a></li>';
+  	echo '<li><a href="/registro">Registro</a></li>';
+}
+@endphp
+
+
 				</ul>
 			</div>
 		</div>

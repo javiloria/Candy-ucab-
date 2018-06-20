@@ -36,23 +36,13 @@
 
 				</div>
 				@section('media')
-				@show 
+				@show
 
 
 			</div>
 
-			<div class="col-md-4 text-center">
-				<div class="carrito">
-					<h4>Carrito de productos</h4>
-					<ul>
-						<li>Item 1</li>
-						<li>Item 1</li>
-						<li>Item 1</li>
-						<li>Item 1</li>
-					</ul>
-					<a class="btn btn-primary btn-lg botoncito" href="#">Realizar compra</a>
-				</div>
-			</div>
+		@section('carrito')
+		@show
 
 		</div>
 	</div>

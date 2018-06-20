@@ -22,7 +22,7 @@ Route::resource('clientenatural', 'ClienteNaturalController');
 Route::view('registro', 'registro')->middleware('guest');
 
 // Rutas para el login...
-Route::view('login','auth.login')->middleware('guest');
+Route::view('login','auth.login')->middleware('guest')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login');
 
 //manejando el logout
@@ -39,6 +39,8 @@ Route::view('nosotros', 'nosotros');
 
 //rutas que necesita estar autenticado
 Route::group(['middleware' => ['auth']], function() {
+
+    Route::resource('/presupuestos','PresupuestoController');
 
     Route::view('ofertas','ofertas');
 

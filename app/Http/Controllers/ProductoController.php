@@ -3,9 +3,11 @@
 namespace CandyUcab\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\DB;
 //definiendo ubicacon del modelo
 use CandyUcab\Producto;
-
+use CandyUcab\Pro_Pre;
 class ProductoController extends Controller
 {
     /**
@@ -16,10 +18,11 @@ class ProductoController extends Controller
      //get, mostrar
     public function index()
     {
-
+      $username=Auth::user()->u_username;
       $producto=  Producto::all();
+      $pro_pre= DB::table('pro_pre')->where('pp_username', $username)->get();
       //le paso a la vista todos los productos enla BD
-      return view ('producto.productos-index',compact('producto'));
+      return view ('producto.productos-index',compact('producto','pro_pre'));
     }
 
     /**

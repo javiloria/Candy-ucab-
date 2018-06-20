@@ -5,6 +5,8 @@ CREATE TABLE PRODUCTO (
     p_tipo varchar(50),
     p_precio numeric(20,3),
     p_imagen varchar(200),
+    p_descripcion varchar (200),
+    p_cantidad numeric(20),
     updated_at timestamp(0) without time zone,
     created_at timestamp(0) without time zone,
     constraint PK_producto Primary Key(p_cod)
@@ -160,4 +162,29 @@ create table Usuario(
 	constraint pk_usuario primary key(u_username),
 	constraint fk_usuario_cn foreign key (fk_clienat) references clientenatural(c_n_rif),
 	constraint fk_usuario_cj foreign key (fk_cliejur) references clientejuridico(c_j_rif)
+);
+
+CREATE sequence presupuesto_pcod_seq
+increment by 1
+start with 1;
+
+CREATE TABLE PRESUPUESTO(
+	P_cod integer NOT NULL DEFAULT nextval('presupuesto_pcod_seq'),
+	P_validez numeric(10) ,
+	P_monto numeric(20,2) NOT NULL,
+	constraint PK_Presupuesto_cod primary key(p_cod)
+);
+CREATE sequence pro_pre_seq
+increment by 1
+start with 1;
+
+CREATE TABLE PRO_PRE(
+pp_id integer NOT NULL DEFAULT nextval('pro_pre_seq'),
+pp_cantidad numeric(20),
+pp_username varchar(50),
+fk_prod_cod  integer,
+fk_pre_cod integer,
+constraint PK_PRO_PRE primary key (pp_id),
+constraint ForaneaPro_Pre_pro Foreign key (fk_prod_cod) references producto(p_cod),
+constraint ForaneaPro_Pre_pre Foreign key (fk_pre_cod ) references presupuesto(p_cod)
 );

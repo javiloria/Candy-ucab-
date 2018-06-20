@@ -9,7 +9,7 @@
 		<div class="col-md-offset-3 col-md-6">
 			<div class="contenedor-fomulario">
 				<h1 class="text-center estilo-escabezado-registro titulos-principales">Registro de usuario natural</h1>
-				
+
 			<form action="/clientenatural" class="form-group" method="POST">
 			@csrf
 				<div class="form-group">
@@ -46,11 +46,11 @@
 
 				<div class="form-group">
 				    <input type="text" class="form-control input-lg" name= "fk_lugar" placeholder="Dirección de habitación"/>
-				</div>	
+				</div>
 			</div>
 
 			<div class="contenedor-formulario">
-				
+
 					<div class="col-md-12">
 						<div class="form-group">
 						    <input type="text" class="form-control input-lg" name="u_username" placeholder="Username"/>
@@ -61,11 +61,9 @@
 						</div>
 
 					</div>
-				
 			</div>
-			
 			<div class="form-group">
-			<button type="submit" class="btn btn-block btn-lg btn-primary">Guardar</button>	
+			<button type="submit" class="btn btn-block btn-lg btn-primary">Guardar</button>
 			</div>
 
 	        </form>

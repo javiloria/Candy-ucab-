@@ -24,13 +24,12 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/productos';
+    protected $redirectTo = '/login';
 
     /**
      * Create a new controller instance.
@@ -76,6 +75,5 @@ class RegisterController extends Controller
         $user
     ->roles()
     ->attach(Role::where('name', 'user')->first());
-return redirect('/login');
     }
 }
