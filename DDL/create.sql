@@ -116,6 +116,35 @@ create table clientejuridico(
   constraint checkcorreo_clientejridico check(c_j_correo LIKE '%@%.com')
 );
 
+CREATE sequence jc_id_sec
+increment by 1
+start with 1;
+
+CREATE TABLE JUR_CON
+(
+    jc_cod integer DEFAULT nextval('jc_id_sec'),
+    jc_contacto integer,
+    jc_clientejuridico numeric(10),
+    CONSTRAINT pk_jurcon PRIMARY KEY (jc_cod, jc_contacto, jc_clientejuridico),
+    CONSTRAINT fk_cj FOREIGN KEY (jc_clientejuridico)
+        REFERENCES ClienteJuridico(c_j_rif),
+    CONSTRAINT fk_co FOREIGN KEY (jc_contacto),
+        REFERENCES Contacto(co_id)
+);
+
+CREATE sequence pun_id_sec
+increment by 1
+start with 1;
+
+CREATE TABLE PUNTO(
+	pu_cod integer DEFAULT nextval('pun_id_sec'),
+	pu_valor numeric(10) NOT NULL,
+	pu_descripcion varchar(191),
+	fk_usuario varchar(50),
+	constraint pk_punto primary key (pu_cod),
+	constraint fk_punto_usuario foreign key (fk_usuario) references Usuario(u_username)
+);
+
 create table lug_jur(
 	lj_cod numeric(5),
 	lj_clientejuridico numeric(10),
@@ -224,6 +253,24 @@ CREATE TABLE PEDIDO(
   constraint PK_pedido primary key(P_nombre),
   CONSTRAINT FK_Tienda FOREIGN KEY(FK_Tienda) REFERENCES TIENDA(T_cod),
   CONSTRAINT  FK_usuario  FOREIGN KEY(FK_usuario ) REFERENCES USUARIO(u_username)
+);
+
+CREATE sequence his_id_sec
+increment by 1
+start with 1;
+
+CREATE TABLE HISTORICO(
+	h_cod integer DEFAULT nextval('his_id_sec'),
+	fk_pedido varchar(50),
+    fk_punto integer,
+	created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    h_cantidad numeric(8) NOT NULL,
+    constraint pk_historico primary key (h_cod, fk_pedido, fk_punto),
+    constraint fk_historico_pedido 
+    foreign key (fk_pedido) references pedido(p_nombre),
+    constraint fk_historico_punto 
+    foreign key (fk_punto) references punto(pu_cod)
 );
 
 CREATE sequence presupuesto_pcod_seq
