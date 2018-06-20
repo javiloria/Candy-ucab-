@@ -51,7 +51,7 @@ Route::group(['middleware' => ['auth']], function() {
     //ruta para los controladores que haran la funcion de CRUD
     Route::resource('/productos','ProductoController');
     Route::resource('/tiendas','TiendaController');
-    Route::view('excel','subirExcell');
+    Route::view('excel','plataforma.subirExcell');
     //importar archivo excell
     Route::post('/import-excel', 'ExcelController@importUsers');
 

@@ -58,7 +58,7 @@ class ClienteNaturalController extends Controller
         $usuario = new Usuario();
         $usuario->u_username = $request->input('u_username');
         $usuario->u_password = Hash::make($request->input('u_password'));
-        $usuario->fk_clienat = $request->input('c_n_rif');
+    
         $usuario
       ->roles()
       ->attach(Role::where('name', 'user')->first());
