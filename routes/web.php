@@ -55,4 +55,31 @@ Route::group(['middleware' => ['auth']], function() {
     //importar archivo excell
     Route::post('/import-excel', 'ExcelController@importUsers');
 
+    Route::get('/plataforma', function() {
+        return view('plataforma.index');
+    });
+
+    Route::get('perfil-cliente', function() {
+        return view('plataforma.profile');
+    });
+
+    Route::get('en-blanco', function() {
+        return view('plataforma.blank');
+    });
+
+    Route::get('tabla-basica', function() {
+        return view('plataforma.basic-table');
+    });
+
+    Route::get('crear-producto', function() {
+        return view('plataforma.crear-producto');
+    });
+
+    Route::get('modificar-producto', function() {
+        return view('plataforma.modificar-producto');
+    });
+
+    Route::get('eliminar-producto', function() {
+        return view('plataforma.eliminar-producto');
+    });
 });
