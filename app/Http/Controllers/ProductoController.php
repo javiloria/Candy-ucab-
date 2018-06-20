@@ -3,7 +3,7 @@
 namespace CandyUcab\Http\Controllers;
 
 use Illuminate\Http\Request;
-//definiendo ubicacon del modelo
+//definiendo ubicación del modelo
 use CandyUcab\Producto;
 
 class ProductoController extends Controller
@@ -17,8 +17,8 @@ class ProductoController extends Controller
     public function index()
     {
 
-      $producto=  Producto::all();
-      //le paso a la vista todos los productos enla BD
+      $producto =  Producto::all();
+      //le paso a la vista todos los productos en la BD
       return view ('producto.productos-index',compact('producto'));
     }
 

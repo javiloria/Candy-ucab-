@@ -69,4 +69,15 @@ Route::group(['middleware' => ['auth']], function() {
         return view('plataforma.basic-table');
     });
 
+    Route::get('crear-producto', function() {
+        return view('plataforma.crear-producto');
+    });
+
+    Route::get('modificar-producto', function() {
+        return view('plataforma.modificar-producto');
+    });
+
+    Route::get('eliminar-producto', function() {
+        return view('plataforma.eliminar-producto');
+    });
 });
