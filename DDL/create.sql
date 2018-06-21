@@ -34,7 +34,19 @@ create table contacto(
 	constraint PK_contacto Primary Key(co_id)
 );
 
+CREATE sequence tienda_cod_sec
+increment by 1
+start with 1;
 
+CREATE TABLE TIENDA(
+    t_cod integer DEFAULT nextval('tienda_cod_sec') ,
+    t_tipoTamano varchar(30) NOT NULL,
+    t_nombre varchar(50) NOT NULL,
+    fk_lugar numeric(5) NOT NULL,
+    t_imagen varchar(200),
+    constraint PK_Tienda PRIMARY KEY(t_cod),
+    constraint FK_Tienda_Lugar foreign key(fk_lugar) references Lugar(l_cod)
+);
 
 Create table ClienteNatural(
 	C_N_rif numeric(10),
@@ -45,8 +57,10 @@ Create table ClienteNatural(
 	C_N_sapellido varchar(30),
 	C_N_correo varchar(30) NOT NULL,
 	fk_Lugar numeric(5) NOT NULL,
+	fk_tienda integer NOT NULL,
 	constraint PK_ClienteNatural Primary Key(C_N_rif),
-	constraint FK_ClienteNatural_Lugar foreign Key(fk_Lugar) references Lugar(l_cod)
+	constraint FK_ClienteNatural_Lugar foreign Key(fk_Lugar) references Lugar(l_cod),
+	constraint FK_ClienteNatural_LugarTienda foreign Key(fk_tienda) references tienda(t_cod)
 );
 
 
@@ -61,7 +75,11 @@ create table clientejuridico(
 	c_j_razonsocial varchar(50) not null,
 	c_j_sitioweb varchar(100),
 	c_j_capital numeric (15,2) not null,
-	constraint pk_clientejuridico Primary Key(c_j_rif)
+	fk_Lugar numeric(5) NOT NULL,
+	fk_tienda integer NOT NULL,
+	constraint pk_clientejuridico Primary Key(c_j_rif),
+	constraint FK_ClienteJuridico_Lugar foreign Key(fk_Lugar) references Lugar(l_cod),
+	constraint FK_ClienteJuridico_LugarTienda foreign Key(fk_tienda) references tienda(t_cod)
 );
 
 create table lug_jur(
@@ -87,19 +105,7 @@ create table telefono(
 );
 
 
-CREATE sequence tienda_cod_sec
-increment by 1
-start with 1;
 
-CREATE TABLE TIENDA(
-    t_cod integer DEFAULT nextval('tienda_cod_sec') ,
-    t_tipoTamano varchar(30) NOT NULL,
-    t_nombre varchar(50) NOT NULL,
-    fk_lugar numeric(5) NOT NULL,
-    t_imagen varchar(200),
-    constraint PK_Tienda PRIMARY KEY(t_cod),
-    constraint FK_Tienda_Lugar foreign key(fk_lugar) references Lugar(l_cod)
-);
 
 
 CREATE sequence rol_id_sec
