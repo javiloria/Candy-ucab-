@@ -140,7 +140,7 @@ class ClienteNaturalController extends Controller
     public function destroy(ClienteNatural $clientenatural)
     {
 
-    
+
         $telefonos = \DB::table('telefono')->where('fk_clientenatural', $clientenatural->c_n_rif)->delete();
 
         $file_path = public_path().'/images/'.$clientenatural->c_n_avatar;

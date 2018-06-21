@@ -24,7 +24,7 @@ Route::view('registro', 'registro')->middleware('guest');
 Route::resource('clientejuridico', 'ClienteJuridicoController');
 
 // Rutas para el login...
-Route::view('login','auth.login')->middleware('guest');
+Route::view('login','auth.login')->middleware('guest')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login');
 
 //manejando el logout
@@ -42,6 +42,8 @@ Route::view('nosotros', 'nosotros');
 //rutas que necesita estar autenticado
 Route::group(['middleware' => ['auth']], function() {
 
+    Route::resource('/presupuestos','PresupuestoController');
+
     Route::view('ofertas','ofertas');
 
     //CRUD DE manejo de roles y permisos
@@ -51,7 +53,7 @@ Route::group(['middleware' => ['auth']], function() {
     //ruta para los controladores que haran la funcion de CRUD
     Route::resource('/productos','ProductoController');
     Route::resource('/tiendas','TiendaController');
-    Route::view('excel','subirExcell');
+    Route::view('excel','plataforma.subirExcell');
     //importar archivo excell
     Route::post('/import-excel', 'ExcelController@importUsers');
 

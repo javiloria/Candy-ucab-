@@ -9,7 +9,7 @@
 		<div class="col-md-offset-3 col-md-6">
 			<div class="contenedor-fomulario">
 				<h1 class="text-center estilo-escabezado-registro titulos-principales">Registro de usuario natural</h1>
-				
+
 				<form action="/clientenatural" class="form-group" method="POST" enctype="multipart/form-data" onsubmit="return validar();">
 				@csrf
 
@@ -32,7 +32,7 @@
 			        </div>
 
 					<a class="btn btn-primary" href="javascript:void(0)" id="addInput">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>	
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 						Adicionar más...
 					</a>
 					<p> </p>
@@ -46,7 +46,7 @@
 					<div class="form-group">
 					    <input id= "nombre2"  type="text" class="form-control input-lg" name= "c_n_snombre" placeholder="Segundo nombre"/>
 					</div>
-				
+
 				<label for=""> Primer Apellido</label>
 					<div class="form-group">
 					    <input id = "apellido1" type="text" class="form-control input-lg" name= "c_n_papellido" placeholder="Primer apellido"/>
@@ -65,28 +65,26 @@
 				<label for=""> Direccion de Habitación</label>
 					<div class="form-group">
 					    <input id = "direccion" type="text" class="form-control input-lg" name= "fk_lugar" placeholder="Dirección de habitación"/>
-					</div>	
+					</div>
 
 				<div class="form-group">
 						<label for="">Avatar: </label>
 						<input type="file" name= "c_n_avatar" />
 				</div>
-	
+
 			<div class="contenedor-formulario">
 				<label for=""> Registro Usuario</label>
 					<div class="col-md-12">
 						<div class="form-group">
 						    <input id="usuario" type="text" class="form-control input-lg" name="u_username" placeholder="Username" />
-						    
+
 						    <input id = "password" type="password" class="form-control input-lg" name="u_password" placeholder="Contraseña"/>
 						</div>
 
 					</div>
-				
 			</div>
-			
 			<div class="form-group">
-			<button type="submit" class="btn btn-block btn-lg btn-primary">Guardar</button>	
+			<button type="submit" class="btn btn-block btn-lg btn-primary">Guardar</button>
 			</div>
 
 	        </form>

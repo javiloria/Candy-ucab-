@@ -13,7 +13,7 @@
 				<i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
 			</div>
 			<div class="contenedor-usuario">
-				<a href="registro-juridico">Jurídico <br>
+				<a href="/clientejuridico/create">Jurídico <br>
 				<i class="fa fa-user-plus" aria-hidden="true"></i></a>
 			</div>
 		</div>

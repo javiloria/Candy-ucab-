@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../plugins/images/favicon.png">
     <title>Candy UCAB - @yield('title')</title>
     <!-- Bootstrap Core CSS -->
-    
+
     <link href="{{asset('bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Menu CSS -->
     <link href="{{asset('../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css')}}" rel="stylesheet">
@@ -133,14 +133,21 @@
                     <li>
                         <a href="tabla-basica" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>Tabla básica</a>
                     </li>
-              
+
                     <li>
                         <a href="en-blanco" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>Página en blanco</a>
                     </li>
 
+                    <li>
+                        <a href="#" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>Empleados</a>
+                        <ul style="list-style: none;">
+                            <li>
+                                 <a href="/excel" class="waves-effect"><i class="fa fa-plus fa-fw" aria-hidden="true"></i>cargar asistencia</a>
+                            </li>
+                    </li>
                 </ul>
             </div>
-            
+
         </div>
         <!-- ============================================================== -->
         <!-- End Left Sidebar -->

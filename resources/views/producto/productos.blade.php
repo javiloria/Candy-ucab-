@@ -16,8 +16,9 @@
 			<div class="col-md-8">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-3 text-leftcol-md-offset-1">Mostrando N resultados</div>
+						<div class="col-md-3 text-leftcol-md-offset-1"></div>
 						<div class="col-md-4">
+							<h3> Mostrando Resultados </h3>
 							<select class="form-control" id="sel1">
 								<option>Filtrar por categorías</option>
 						        <option>1</option>
@@ -36,23 +37,13 @@
 
 				</div>
 				@section('media')
-				@show 
+				@show
 
 
 			</div>
 
-			<div class="col-md-4 text-center">
-				<div class="carrito">
-					<h4>Carrito de productos</h4>
-					<ul>
-						<li>Item 1</li>
-						<li>Item 1</li>
-						<li>Item 1</li>
-						<li>Item 1</li>
-					</ul>
-					<a class="btn btn-primary btn-lg botoncito" href="#">Realizar compra</a>
-				</div>
-			</div>
+		@section('carrito')
+		@show
 
 		</div>
 	</div>

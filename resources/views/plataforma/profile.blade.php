@@ -50,15 +50,11 @@
                         <div class="white-box">
                             <form class="form-horizontal form-material">
                                 <div class="form-group">
-                                    <label class="col-md-12">Full Name</label>
+                                    <label class="col-md-12">Username</label>
                                     <div class="col-md-12">
-                                        <input type="text" placeholder="Johnathan Doe" class="form-control form-control-line"> </div>
+                                        <input type="text" placeholder="{{ Auth::user()->u_username }} " class="form-control form-control-line"> </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="example-email" class="col-md-12">Email</label>
-                                    <div class="col-md-12">
-                                        <input type="email" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email"> </div>
-                                </div>
+
                                 <div class="form-group">
                                     <label class="col-md-12">Password</label>
                                     <div class="col-md-12">
@@ -89,7 +85,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button class="btn btn-success">Update Profile</button>
+                                        <button class="btn btn-success" >Update Profile</button>
                                     </div>
                                 </div>
                             </form>
@@ -99,5 +95,5 @@
                 <!-- /.row -->
             </div>
             <!-- /.container-fluid -->
-            
+
             @stop
