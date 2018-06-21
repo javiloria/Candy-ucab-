@@ -125,7 +125,7 @@ h1, h2, h3, h4 {
 
 .texto-personalizado {
 	font-family: 'Pacifico', cursive;
-	
+
 }
 
 .txt1 {
@@ -241,10 +241,10 @@ footer {
 	background-color: #f4f4f4;
 	min-height: 200px;
 	max-width: 300px;
-	text-align: left;
+	text-align: justify;
 }
 
-a[href="https://twitter.com/"], 
+a[href="https://twitter.com/"],
 a[href="https://www.facebook.com/"],
 a[href="https://www.youtube.com/"] {
 	text-decoration: none;
@@ -310,7 +310,7 @@ a[href="https://www.youtube.com/"] {
 
 .contenedor-tienda {
 	width: 75%;
-	
+
 	margin: 15px auto
 }
 
@@ -345,7 +345,7 @@ a[href="https://www.youtube.com/"] {
 .contenedor-mapa {
  	margin: 20px 0 60px 0;
 }
- 
+
 .contenedor-mapa h2 {
 	margin: 20px 0 35px 0;
 }
@@ -387,7 +387,7 @@ a[href="https://www.youtube.com/"] {
 	font-family: 'Pacifico';
 }
 
-/* Menú responsivo */ 
+/* Menú responsivo */
 
 .navbar-default {
 	display: none;
@@ -437,7 +437,7 @@ a[href="https://www.youtube.com/"] {
 		margin-left: auto;
 		margin-right: auto;
 	}
-	
+
 }
 
 .contenedor-fomulario {
@@ -492,4 +492,3 @@ a[href="https://www.youtube.com/"] {
 		width: 51%;
 	}
 }
-

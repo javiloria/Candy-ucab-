@@ -16,8 +16,9 @@
 			<div class="col-md-8">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-3 text-leftcol-md-offset-1">Mostrando N resultados</div>
+						<div class="col-md-3 text-leftcol-md-offset-1"></div>
 						<div class="col-md-4">
+							<h3> Mostrando Resultados </h3>
 							<select class="form-control" id="sel1">
 								<option>Filtrar por categorías</option>
 						        <option>1</option>

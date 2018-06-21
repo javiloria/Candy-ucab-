@@ -238,7 +238,7 @@ CREATE TABLE PRESUPUESTO(
   FK_pedido varchar(100),
   constraint PK_Presupuesto_cod primary key(p_cod),
   constraint FK_Pre_diario Foreign key (FK_diario) references DIARIO(D_cod),
-  constraint FK_Pre_pedido Foreign key (FK_pedido ) references Pedido(P_nombre)
+  constraint FK_Pre_pedido Foreign key (FK_pedido ) references Pedido(P_nombre),
 );
 
 
@@ -255,6 +255,7 @@ fk_pre_cod integer,
 constraint PK_PRO_PRE primary key (pp_id),
 constraint ForaneaPro_Pre_pro Foreign key (fk_prod_cod) references producto(p_cod),
 constraint ForaneaPro_Pre_pre Foreign key (fk_pre_cod ) references presupuesto(p_cod)
+constraint FK_Propre_usuario Foreign key (pp_username) references USUARIO(u_username)
 );
 
 create table TIPO_CARAMELO(
