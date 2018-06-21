@@ -80,6 +80,19 @@ create table Usuario(
   created_at timestamp(0) without time zone,
   updated_at timestamp(0) without time zone,
 	constraint pk_usuario primary key(u_username)
+
+CREATE sequence tienda_cod_sec
+increment by 1
+start with 1;
+
+CREATE TABLE TIENDA(
+    t_cod integer DEFAULT nextval('tienda_cod_sec') ,
+    t_tipoTamano varchar(30) NOT NULL,
+    t_nombre varchar(50) NOT NULL,
+    fk_lugar numeric(5) NOT NULL,
+    t_imagen varchar(200),
+    constraint PK_Tienda PRIMARY KEY(t_cod),
+    constraint FK_Tienda_Lugar foreign key(fk_lugar) references Lugar(l_cod)
 );
 
 Create table ClienteNatural(
@@ -93,10 +106,15 @@ Create table ClienteNatural(
   C_N_avatar varchar(191),
   fk_usuario varchar(50),
 	fk_Lugar numeric(5) NOT NULL,
+	fk_tienda integer NOT NULL,
 	constraint PK_ClienteNatural Primary Key(C_N_rif),
 	constraint FK_ClienteNatural_Lugar foreign Key(fk_Lugar) references Lugar(l_cod),
+
   constraint FK_clientenatural_usuario foreign key (fk_usuario) references Usuario(u_username),
   constraint checkcorreo_clientenatural check(C_N_correo LIKE '%@%.com')
+
+	constraint FK_ClienteNatural_LugarTienda foreign Key(fk_tienda) references tienda(t_cod)
+
 );
 
 	create sequence tel_id_sec
@@ -114,6 +132,12 @@ create table clientejuridico(
 	constraint pk_clientejuridico Primary Key(c_j_rif),
   constraint FK_clientejuridico_usuario foreign key (fk_usuario) references Usuario(u_username),
   constraint checkcorreo_clientejridico check(c_j_correo LIKE '%@%.com')
+
+	fk_Lugar numeric(5) NOT NULL,
+	fk_tienda integer NOT NULL,
+	constraint pk_clientejuridico Primary Key(c_j_rif),
+	constraint FK_ClienteJuridico_Lugar foreign Key(fk_Lugar) references Lugar(l_cod),
+	constraint FK_ClienteJuridico_LugarTienda foreign Key(fk_tienda) references tienda(t_cod)
 );
 
 create table lug_jur(
@@ -139,9 +163,7 @@ create table telefono(
 );
 
 
-CREATE sequence tienda_cod_sec
-increment by 1
-start with 1;
+
 
 CREATE TABLE TIENDA(
     t_cod integer DEFAULT nextval('tienda_cod_sec') ,
@@ -153,6 +175,7 @@ CREATE TABLE TIENDA(
     constraint FK_Tienda_Lugar foreign key(fk_lugar) references Lugar(l_cod),
     constraint check_tipo_tamaño_tienda check(t_tipoTamano in ('Grande','Mediana','Pequeña'))
 );
+
 
 
 CREATE sequence rol_id_sec
