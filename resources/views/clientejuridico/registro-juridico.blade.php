@@ -10,24 +10,24 @@
 			<div class="contenedor-fomulario">
 				<h1 class="text-center estilo-escabezado-registro titulos-principales">Registro de usuario juridico</h1>
 				
-			<form action="/clientejuridico" class="form-group" method="POST" enctype="multipart/form-data">
+			<form action="/clientejuridico" class="form-group" method="POST" enctype="multipart/form-data" onsubmit="return validar();">
 			@csrf
 
 			<label for="">RIF</label>
 				<div class="form-group">
-					<input type="text" class="form-control input-lg" name= "c_j_rif" placeholder="Rif" required/>
+					<input id="rif" type="text" class="form-control input-lg" name= "c_j_rif" placeholder="Rif" />
 				</div>
 
 			<label for=""> Razon Social</label>
 				<div class="form-group">
-				    <input type="text" class="form-control input-lg" name= "c_j_razonsocial" placeholder="Razon Social" required/>
+				    <input id="razonsocial" type="text" class="form-control input-lg" name= "c_j_razonsocial" placeholder="Razon Social" />
 				</div>
 
 			<label for=""> Telefono</label>
 
 				<div id="dynamicDiv" class="form-group">
 				<p>
-					<input type="text" class="form-control input-lg" name= "telefono[]" placeholder="Telefono"/>
+					<input id="numero" type="text" class="form-control input-lg" name= "telefono[]" placeholder="Telefono"/>
 		        </p>
 		        </div>
 
@@ -39,21 +39,21 @@
 
 			<label for=""> Denominacion Comercial</label>
 				<div class="form-group">
-				    <input type="text" class="form-control input-lg" name= "c_j_dcomercial" placeholder="Denominacion Comercial"/>
+				    <input id="dcomercial" type="text" class="form-control input-lg" name= "c_j_dcomercial" placeholder="Denominacion Comercial"/>
 				</div>
 
 			<label for=""> Capital</label>
 				<div class="form-group">
-				    <input type="text" class="form-control input-lg" name= "c_j_capital" placeholder="Capital"/>
+				    <input id="capital" type="text" class="form-control input-lg" name= "c_j_capital" placeholder="Capital"/>
 				</div>
 
 			<label for=""> Persona Contacto</label>
 
 			    <div id="dynamicDiv2">
 				<p>
-					<input type="text" class="form-control input-lg" name= "nombre[]" placeholder="Nombre"/>
+					<input id = "contacto" type="text" class="form-control input-lg" name= "nombre[]" placeholder="Nombre"/>
 
-					<input type="text" class="form-control input-lg" name= "descripcion[]" placeholder="Descripcion"/>
+					<input id = "descripcion" type="text" class="form-control input-lg" name= "descripcion[]" placeholder="Descripcion"/>
 
 		        </p>
 		        </div>
@@ -66,22 +66,22 @@
 			
 			<label for=""> Sitio Web</label>
 				<div class="form-group">
-				    <input type="text" class="form-control input-lg" name= "c_j_sitioweb" placeholder="Sitio Web"/>
+				    <input id="sitioweb" type="text" class="form-control input-lg" name= "c_j_sitioweb" placeholder="Sitio Web"/>
 				</div>			
 
 			<label for=""> Correo Electronico</label>
 				<div class="form-group">
-				    <input type="text" class="form-control input-lg" name= "c_j_correo" placeholder="Email"/>
+				    <input id="correo" type="text" class="form-control input-lg" name= "c_j_correo" placeholder="Email"/>
 				</div>
 
 			<label for=""> Direccion Fiscal Principal</label>
 				<div class="form-group">
-				    <input type="text" class="form-control input-lg" name= "l_lugarprin" placeholder="Dirección de habitación"/>
+				    <input id="direccionPrincipal" type="text" class="form-control input-lg" name= "l_lugarprin" placeholder="Dirección de habitación"/>
 				</div>	
 
 			<label for=""> Direccion Fiscal</label>
 				<div class="form-group">
-				    <input type="text" class="form-control input-lg" name= "l_lugarsec" placeholder="Dirección de habitación"/>
+				    <input id="direccionSecundaria" type="text" class="form-control input-lg" name= "l_lugarsec" placeholder="Dirección de habitación"/>
 				</div>	
 
 			<div class="form-group">
@@ -94,8 +94,8 @@
 				<label for=""> Registro Usuario</label>
 					<div class="col-md-12">
 						<div class="form-group">
-						    <input type="text" class="form-control input-lg" name="u_username" placeholder="Username"/>
-						    <input type="password" class="form-control input-lg" name="u_password" placeholder="Contraseña"/>
+						    <input id="usuario" type="text" class="form-control input-lg" name="u_username" placeholder="Username"/>
+						    <input id="password" type="password" class="form-control input-lg" name="u_password" placeholder="Contraseña"/>
 						</div>
 
 					</div>
@@ -154,5 +154,6 @@
 	</div>
 </div>
 
+<script src="{{ asset('/js/validaciones-juridico.js') }}"></script>
 
 @stop

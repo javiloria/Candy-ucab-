@@ -21,7 +21,14 @@ Route::view('registro-juridico', 'registro-juridico');
 Route::resource('clientenatural', 'ClienteNaturalController');
 Route::view('registro', 'registro')->middleware('guest');
 
+
+//Rutas para el registro juridico
+
 Route::resource('clientejuridico', 'ClienteJuridicoController');
+
+//Rutas para enviar los puntos
+Route::resource('punto', 'PuntoController');
+
 
 // Rutas para el login...
 Route::view('login','auth.login')->middleware('guest')->name('login');
