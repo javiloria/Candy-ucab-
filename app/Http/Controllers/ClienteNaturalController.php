@@ -40,7 +40,13 @@ class ClienteNaturalController extends Controller
      */
     public function store(Request $request)
     {
-        $clientenatural = new ClienteNatural();
+       
+
+        $validatedData = $request->validate([
+            'c_n_avatar' => 'image'
+        ]);
+
+         $clientenatural = new ClienteNatural();
 
         if($request->hasFile('c_n_avatar')){
             $file = $request->file('c_n_avatar');
@@ -140,7 +146,7 @@ class ClienteNaturalController extends Controller
     public function destroy(ClienteNatural $clientenatural)
     {
 
-
+    
         $telefonos = \DB::table('telefono')->where('fk_clientenatural', $clientenatural->c_n_rif)->delete();
 
         $file_path = public_path().'/images/'.$clientenatural->c_n_avatar;
