@@ -1,5 +1,15 @@
 
 --se deben crear las tablas antes de hacerle referencia
+
+CREATE TABLE LUGAR(
+l_cod numeric(5),
+l_tipo varchar(15) NOT NULL,
+l_nombre varchar(50) NOT NULL,
+fk_lugar numeric(5),
+constraint PK_lugar primary key(l_cod),
+constraint fk_lugar foreign key( fk_lugar ) references lugar(l_cod),
+constraint Lugar_check_tipo check( l_tipo in('Estado','Municipio','Parroquia'))
+);
 create sequence arsenal_sec
 increment by 1
 start with 1;
@@ -22,16 +32,24 @@ CREATE TABLE SALARIO(
   CONSTRAINT PK_Salario_numero PRIMARY KEY(S_numero)
 );
 
-
-CREATE TABLE LUGAR(
-l_cod numeric(5),
-l_tipo varchar(15) NOT NULL,
-l_nombre varchar(50) NOT NULL,
-fk_lugar numeric(5),
-constraint PK_lugar primary key(l_cod),
-constraint fk_lugar foreign key( fk_lugar ) references lugar(l_cod),
-constraint Lugar_check_tipo check( l_tipo in('Estado','Municipio','Parroquia'))
+create sequence of_id_sec
+  increment by 1
+  start with 1;
+CREATE TABLE PRODUCTO (
+    p_cod numeric(20),
+    p_nombre varchar(50),
+    p_tipo varchar(50),
+    p_precio numeric(20,3),
+    p_imagen varchar(200),
+    p_descripcion varchar (200),
+    p_cantidad numeric(20),
+    FK_arsenal integer,
+    updated_at timestamp(0) without time zone,
+    created_at timestamp(0) without time zone,
+    constraint PK_producto Primary Key(p_cod),
+    constraint FK_producto_arsenal foreign Key(FK_arsenal) references ARSENAL(A_numero)
 );
+
 
 
 create sequence con_id_sec
@@ -96,22 +114,7 @@ CREATE TABLE DIARIO(
   CONSTRAINT FK_EMPLEADO_DIARIO FOREIGN KEY(FK_empleado) REFERENCES EMPLEADO(E_ci)
 );
 
-CREATE TABLE PRODUCTO (
-    p_cod numeric(20),
-    p_nombre varchar(50),
-    p_tipo varchar(50),
-    p_precio numeric(20,3),
-    p_imagen varchar(200),
-    p_descripcion varchar (200),
-    p_cantidad numeric(20),
-    FK_arsenal integer,
-    FK_diario integer,
-    updated_at timestamp(0) without time zone,
-    created_at timestamp(0) without time zone,
-    constraint PK_producto Primary Key(p_cod),
-    constraint FK_producto_arsenal foreign Key(FK_arsenal) references ARSENAL(A_numero),
-    constraint FK_producto_diario foreign Key(FK_diario) references Diario(D_cod)
-);
+
 
 Create table ClienteNatural(
   C_N_rif numeric(10),
@@ -124,12 +127,13 @@ Create table ClienteNatural(
   C_N_avatar varchar(191),
   fk_usuario varchar(50),
   fk_Lugar numeric(5) NOT NULL,
-  fk_tienda integer NOT NULL,
+  fk_tienda integer,
   constraint PK_ClienteNatural Primary Key(C_N_rif),
   constraint FK_ClienteNatural_Lugar foreign Key(fk_Lugar) references Lugar(l_cod),
 
   constraint FK_clientenatural_usuario foreign key (fk_usuario) references Usuario(u_username),
   constraint checkcorreo_clientenatural check(C_N_correo LIKE '%@%.com'),
+
   constraint FK_ClienteNatural_LugarTienda foreign Key(fk_tienda) references tienda(t_cod)
 
 );
@@ -155,9 +159,12 @@ create table clientejuridico(
   constraint FK_ClienteJuridico_Lugar foreign Key(fk_Lugar) references Lugar(l_cod),
   constraint FK_ClienteJuridico_LugarTienda foreign Key(fk_tienda) references tienda(t_cod)
 );
+create sequence lj_id_sec
+increment by 1
+start with 1;
 
 create table lug_jur(
-  lj_cod numeric(5),
+  lj_cod integer default nextval('lj_id_sec'),
   lj_clientejuridico numeric(10),
   lj_lugar numeric(10),
   constraint pk_lugjur  primary key (lj_cod, lj_clientejuridico, lj_lugar),
@@ -165,6 +172,63 @@ create table lug_jur(
   constraint fk_l foreign key(lj_lugar) references lugar(l_cod)
 );
 
+CREATE sequence pun_id_sec
+increment by 1
+start with 1;
+
+CREATE TABLE PUNTO(
+  pu_cod integer DEFAULT nextval('pun_id_sec'),
+  pu_valor numeric(10) NOT NULL,
+  pu_descripcion varchar(191),
+  fk_usuario varchar(50),
+  constraint pk_punto primary key (pu_cod),
+  constraint fk_punto_usuario foreign key (fk_usuario) references Usuario(u_username)
+);
+
+
+CREATE sequence his_id_sec
+increment by 1
+start with 1;
+
+CREATE TABLE PEDIDO(
+  P_nombre varchar(50),
+  p_tipo   varchar(50),
+  FK_Tienda integer,
+  FK_usuario varchar(50),
+  constraint PK_pedido primary key(P_nombre),
+  CONSTRAINT FK_Tienda FOREIGN KEY(FK_Tienda) REFERENCES TIENDA(T_cod),
+  CONSTRAINT  FK_usuario  FOREIGN KEY(FK_usuario ) REFERENCES USUARIO(u_username)
+);
+CREATE TABLE HISTORICO(
+  h_cod integer DEFAULT nextval('his_id_sec'),
+  fk_pedido varchar(50),
+    fk_punto integer,
+  created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    h_cantidad numeric(8) NOT NULL,
+    constraint pk_historico primary key (h_cod, fk_pedido, fk_punto),
+    constraint fk_historico_pedido
+    foreign key (fk_pedido) references pedido(p_nombre),
+    constraint fk_historico_punto
+    foreign key (fk_punto) references punto(pu_cod)
+);
+
+
+CREATE sequence jc_id_sec
+increment by 1
+start with 1;
+
+CREATE TABLE JUR_CON
+(
+    jc_cod integer DEFAULT nextval('jc_id_sec'),
+    jc_contacto integer,
+    jc_clientejuridico numeric(10),
+    CONSTRAINT pk_jurcon PRIMARY KEY (jc_cod, jc_contacto, jc_clientejuridico),
+    CONSTRAINT fk_cj FOREIGN KEY (jc_clientejuridico)
+        REFERENCES ClienteJuridico(c_j_rif),
+    CONSTRAINT fk_co FOREIGN KEY (jc_contacto)
+        REFERENCES Contacto(co_id)
+);
 
 create table telefono(
   t_id integer default nextval('tel_id_sec'),
@@ -177,7 +241,6 @@ create table telefono(
   constraint fk_telefono_clientenatural foreign key(fk_clientenatural) references clientenatural(c_n_rif),
   constraint fk_telefono_clientejuridico foreign key(fk_clientejuridico) references clientejuridico(c_j_rif)
 );
-
 
 CREATE sequence rol_id_sec
 increment by 1
@@ -205,6 +268,7 @@ CREATE TABLE ROLE_USUARIO(
       CONSTRAINT PK_role_user PRIMARY KEY (id)
 
 );
+
 
 
 CREATE TABLE PASSWORD_RESETS(
@@ -245,15 +309,7 @@ CREATE TABLE ASISTENCIA(
   constraint ForaneaAsis_empl Foreign key (FK_empleado) references EMPLEADO(E_ci)
 );
 
-CREATE TABLE PEDIDO(
-  P_nombre varchar(50),
-  p_tipo   varchar(50),
-  FK_Tienda integer,
-  FK_usuario varchar(50),
-  constraint PK_pedido primary key(P_nombre),
-  CONSTRAINT FK_Tienda FOREIGN KEY(FK_Tienda) REFERENCES TIENDA(T_cod),
-  CONSTRAINT  FK_usuario  FOREIGN KEY(FK_usuario ) REFERENCES USUARIO(u_username)
-);
+
 
 CREATE sequence presupuesto_pcod_seq
 increment by 1
@@ -353,16 +409,18 @@ CREATE TABLE PED_STA(
   CONSTRAINT FK_PD_status FOREIGN KEY(FK_status) REFERENCES STATUS(S_cod)
 );
 
+create sequence carnet_id_sec
+  increment by 1
+  start with 1;
+
 CREATE TABLE CARNET(
-  C_numero integer,
+  C_numero integer default nextval('carnet_id_sec'),
   C_nombre varchar(100),
   C_apellido varchar(100),
   C_fecha_reg timestamp,
   FK_clientenatural integer,
-  FK_clientejuridido integer,
   constraint PK_CARNET primary key(C_numero),
-  CONSTRAINT FK_clientenatural FOREIGN KEY(FK_clientenatural)  REFERENCES ClienteNatural(C_N_rif)  ,
-  CONSTRAINT FK_clientejuridido FOREIGN KEY(FK_clientejuridido) REFERENCES  clientejuridico(C_J_rif)
+  CONSTRAINT FK_clientenatural FOREIGN KEY(FK_clientenatural)  REFERENCES ClienteNatural(C_N_rif)
 );
 
 CREATE sequence venta_seq
@@ -397,13 +455,29 @@ CREATE TABLE TEXTURA(
 CREATE sequence descuento_seq
 increment by 1
 start with 1;
+CREATE TABLE OFERTA(
+    o_id integer DEFAULT nextval('of_id_sec'),
+    o_producto numeric(20),
+    o_diario integer,
+    o_precio numeric(20) not null,
+    o_descripcion varchar(191),
+    constraint pk_oferta primary key (o_id, o_producto, o_diario),
+    constraint fk_op foreign key (o_producto) references Producto(p_cod),
+    constraint fk_od foreign key (o_diario) references Diario(d_cod)
+);
 
 CREATE TABLE DESCUENTO(
+
   D_cod integer DEFAULT nextval('descuento_seq'),
   D_porcentaje numeric(3,2) NOT NULL,
   FK_presupuesto integer,
+  FK_oferta1 integer,
+  Fk_oferta2 numeric(20),
+  fk_oferta3 integer,
   CONSTRAINT PK_Descuento_cod PRIMARY KEY(D_cod),
-  CONSTRAINT FK_empleado_descuento Foreign key(FK_presupuesto) references PRESUPUESTO(P_cod)
+  CONSTRAINT FK_empleado_descuento Foreign key(FK_presupuesto) references PRESUPUESTO(P_cod),
+  Foreign key(FK_oferta1, fk_oferta2, fk_oferta3) references OFERTA(o_id, o_producto, o_diario)
+
 );
 
 CREATE sequence vacacion_seq
@@ -473,8 +547,8 @@ CREATE TABLE PAGO(
   P_monto numeric(20,2) NOT NULL,
   P_fechapago timestamp,
   FK_pedido varchar(50),
-  FK_debito integer,
   FK_credito integer,
+  FK_debito integer,
   FK_cheque integer,
   constraint PK_PAGO primary key(P_cod),
   constraint FK_Pago_pedido FOREIGN key(FK_pedido) references PEDIDO (P_nombre),

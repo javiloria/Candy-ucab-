@@ -14,7 +14,8 @@ class PuntoController extends Controller
      */
     public function index()
     {
-        //
+        $puntos = Punto::all();
+        return view('punto.vista-punto', compact('puntos'));
     }
 
     /**
@@ -42,8 +43,9 @@ class PuntoController extends Controller
         $punto->fk_usuario = $request->input('fk_usuario');
         $punto->save();
 
-        return 'Save';
 
+        $puntos = Punto::all();
+        return view('punto.vista-punto', compact('puntos'));
     }
 
     /**
@@ -52,9 +54,9 @@ class PuntoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Punto $punto)
     {
-        //
+        return view('punto.usuario-punto', compact('punto'));
     }
 
     /**
@@ -63,9 +65,9 @@ class PuntoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Punto $punto)
     {
-        //
+        return view('punto.cambio-punto', compact('punto'));
     }
 
     /**
@@ -75,9 +77,15 @@ class PuntoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Punto $punto)
     {
-        //
+
+        $punto->pu_valor = $request->input('pu_valor');
+        $punto->pu_descripcion = $request->input('pu_descripcion');
+        $punto->save();
+
+        $puntos = Punto::all();
+        return view('punto.vista-punto', compact('puntos'));
     }
 
     /**
@@ -86,8 +94,10 @@ class PuntoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Punto $punto)
     {
-        //
+        $punto->delete();
+        $puntos = Punto::all();
+        return view('punto.vista-punto', compact('puntos'));
     }
 }
