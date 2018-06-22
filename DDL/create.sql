@@ -22,47 +22,6 @@ CREATE TABLE SALARIO(
   CONSTRAINT PK_Salario_numero PRIMARY KEY(S_numero)
 );
 
-CREATE TABLE Empleado(
-  E_ci integer,
-  E_nacionalidad  varchar(30) NOT NULL,
-  E_especialidad  varchar(50) NOT NULL,
-  E_fecha_ingreso timestamp NOT NULL,
-  FK_salario integer    NOT NULL,
-  CONSTRAINT PK_Empleado PRIMARY KEY(E_ci)  ,
-  constraint FK_Empleado_salario FOREIGN key(FK_salario) references SALARIO(S_numero)
-);
-
-create sequence diario_sec
-increment by 1
-start with 1;
-
-CREATE TABLE DIARIO(
-  D_cod integer DEFAULT nextval('diario_sec') ,
-  D_descripcion varchar(200) NOT NULL,
-  D_fec_inicio timestamp NOT NULL,
-  D_fecha_fin timestamp NOT NULL,
-  FK_empleado integer NOT NULL,
-  CONSTRAINT PK_Diario_cod PRIMARY KEY(D_cod),
-  CONSTRAINT FK_EMPLEADO_DIARIO FOREIGN KEY(FK_empleado) REFERENCES EMPLEADO(E_ci)
-);
-
-CREATE TABLE PRODUCTO (
-    p_cod numeric(20),
-    p_nombre varchar(50),
-    p_tipo varchar(50),
-    p_precio numeric(20,3),
-    p_imagen varchar(200),
-    p_descripcion varchar (200),
-    p_cantidad numeric(20),
-    FK_arsenal integer,
-    FK_diario integer,
-    updated_at timestamp(0) without time zone,
-    created_at timestamp(0) without time zone,
-    constraint PK_producto Primary Key(p_cod),
-    constraint FK_producto_arsenal foreign Key(FK_arsenal) references ARSENAL(A_numero),
-    constraint FK_producto_diario foreign Key(FK_diario) references Diario(D_cod)
-);
-
 
 CREATE TABLE LUGAR(
 l_cod numeric(5),
@@ -109,6 +68,49 @@ CREATE TABLE TIENDA(
     constraint FK_Tienda_Lugar foreign key(fk_lugar) references Lugar(l_cod)
 );
 
+CREATE TABLE Empleado(
+  E_ci integer,
+  E_nacionalidad  varchar(30) NOT NULL,
+  E_especialidad  varchar(50) NOT NULL,
+  E_fecha_ingreso timestamp NOT NULL,
+  FK_salario integer    NOT NULL,
+  FK_tienda integer    NOT NULL,
+  CONSTRAINT PK_Empleado PRIMARY KEY(E_ci)  ,
+  constraint FK_Empleado_salario FOREIGN key(FK_salario) references SALARIO(S_numero),
+  constraint FK_Empleado_tienda FOREIGN key(FK_tienda) references TIENDA(t_cod)
+);
+
+create sequence diario_sec
+increment by 1
+start with 1;
+
+CREATE TABLE DIARIO(
+  D_cod integer DEFAULT nextval('diario_sec') ,
+  D_descripcion varchar(200) NOT NULL,
+  D_fec_inicio timestamp NOT NULL,
+  D_fecha_fin timestamp NOT NULL,
+  FK_empleado integer NOT NULL,
+  CONSTRAINT PK_Diario_cod PRIMARY KEY(D_cod),
+  CONSTRAINT FK_EMPLEADO_DIARIO FOREIGN KEY(FK_empleado) REFERENCES EMPLEADO(E_ci)
+);
+
+CREATE TABLE PRODUCTO (
+    p_cod numeric(20),
+    p_nombre varchar(50),
+    p_tipo varchar(50),
+    p_precio numeric(20,3),
+    p_imagen varchar(200),
+    p_descripcion varchar (200),
+    p_cantidad numeric(20),
+    FK_arsenal integer,
+    FK_diario integer,
+    updated_at timestamp(0) without time zone,
+    created_at timestamp(0) without time zone,
+    constraint PK_producto Primary Key(p_cod),
+    constraint FK_producto_arsenal foreign Key(FK_arsenal) references ARSENAL(A_numero),
+    constraint FK_producto_diario foreign Key(FK_diario) references Diario(D_cod)
+);
+
 Create table ClienteNatural(
   C_N_rif numeric(10),
   C_N_cedula numeric(10) NOT NULL,
@@ -146,7 +148,7 @@ create table clientejuridico(
   fk_tienda integer NOT NULL,
   constraint pk_clientejuridico Primary Key(c_j_rif),
   constraint FK_clientejuridico_usuario foreign key (fk_usuario) references Usuario(u_username),
-  constraint checkcorreo_clientejridico check(c_j_correo LIKE '%@%.com'),
+  constraint checkcorreo_clientejridico check(c_j_correo LIKE '%@%.%'),
 
   constraint FK_ClienteJuridico_Lugar foreign Key(fk_Lugar) references Lugar(l_cod),
   constraint FK_ClienteJuridico_LugarTienda foreign Key(fk_tienda) references tienda(t_cod)
