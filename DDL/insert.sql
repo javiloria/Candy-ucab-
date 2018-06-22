@@ -21,97 +21,181 @@ insert into status values(3,'Send-Pedido');
 
 
     -- insert de contacto
-insert into CONTACTO values(1 ,'Jorge','primo');
-insert into CONTACTO values( 2,'Alejandro','primo');
-insert into CONTACTO values( 3,'Elias','hermano');
-insert into CONTACTO values( 4,'Jose','hermano');
-insert into CONTACTO values( 5,'Gabriel','tio');
-insert into CONTACTO values( 6,'Herick','tio');
-insert into CONTACTO values( 7,'Miguel','tio');
-insert into CONTACTO values( 8,'Jormary','Mamá');
-insert into CONTACTO values( 9,'Camila','papa');
-insert into CONTACTO values( 10,'Maria','Hijo');
-insert into CONTACTO values(11,'Lucho','Hijo');
-insert into CONTACTO values(12,'Luis','Hijo');
-insert into CONTACTO values(13,'Juan','Hijo');
-insert into CONTACTO values(14,'Rebeca','Mamá');
-insert into CONTACTO values(15,'Carolina','Tia');
-insert into CONTACTO values(16,'Laura','Tia');
-insert into CONTACTO values(17,'Valeria','Tia');
-insert into CONTACTO values(18,'Miriam','Tia');
-insert into CONTACTO values(19,'Manuela','Tia');
-insert into CONTACTO values(20,'Pablo','Padrastro');
-insert into CONTACTO values(21,'Mercedes','Padrastro');
-insert into CONTACTO values(22,'Nazareth','Padrastro');
-insert into CONTACTO values(23,'Dexire','Padrastro');
-insert into CONTACTO values(24,'Sara','Padrastro');
-insert into CONTACTO values(25,'Daniela','Padrastro');
-insert into CONTACTO values(26,'Dayana','Mamá');
-insert into CONTACTO values(27,'Karla','Papá');
-insert into CONTACTO values(28,'Kelly','Papá');
-insert into CONTACTO values(29,'Katherine','Papá');
-insert into CONTACTO values(30,'Xiomara','Papá');
-insert into CONTACTO values(31,'Felicia','Papá');
-insert into CONTACTO values(32,'Carlos','Papá');
-insert into CONTACTO values(33,'Natalia','Papá');
-insert into CONTACTO values(34,'Lionel','Hijo');
-insert into CONTACTO values(35,'Isabella','Tia');
-insert into CONTACTO values(36,'Mariam','Tia');
-insert into CONTACTO values(37,'Maximo','Tia');
-insert into CONTACTO values(38,'Bianca','Tia');
-insert into CONTACTO values(39,'Roberto','Tia');
-insert into CONTACTO values(40,'Andy','Tio');
-insert into CONTACTO values(41,'Vanessa','Mamá');
-insert into CONTACTO values(42,'Maribel','Mamá');
-insert into CONTACTO values(43,'Victor','Papá');
-insert into CONTACTO values(44,'Jimy','Mamá');
-insert into CONTACTO values(45,'Yuliana','Mamá');
-insert into CONTACTO values(46,'Eliana','Mamá');
-insert into CONTACTO values(47,'Nina','Hijo');
-insert into CONTACTO values(48,'Pedro','Hijo');
-insert into CONTACTO values(49,'Sofia','Suegro');
-insert into CONTACTO values(50,'Betania','Suegro');
-insert into CONTACTO values(51,'Gabriela','Suegro');
-insert into CONTACTO values(52,'Graciela','Suegro');
-insert into CONTACTO values(53,'Veronica','Suegro');
-insert into CONTACTO values(54,'Yuleixi','Suegro');
-insert into CONTACTO values(55,'Franchecha','cuñado');
-insert into CONTACTO values(56,'Joan','cuñado');
-insert into CONTACTO values(57,'David','cuñado');
-insert into CONTACTO values(58,'Juliana','cuñado');
-insert into CONTACTO values(59,'Manuel','cuñado');
-insert into CONTACTO values(60,'Gregorio','cuñado');
-insert into CONTACTO values(61,'Emirse','Yerno');
-insert into CONTACTO values(62,'Zulema','Yerno');
-insert into CONTACTO values(63,'Yamira','Yerno');
-insert into CONTACTO values(64,'Estefany','Yerno');
-insert into CONTACTO values(65,'Wendy','Yerno');
-insert into CONTACTO values(66,'Emilio','Yerno');
-insert into CONTACTO values(67,'Ronald','Yerno');
-insert into CONTACTO values(68,'Ana','Yerno');
-insert into CONTACTO values(69,'Karina','Yerno');
-insert into CONTACTO values(70,'Marianny','tio');
-insert into CONTACTO values(71,'Valentina','Madre');
-insert into CONTACTO values(72,'Andrea','Madre');
-insert into CONTACTO values(73,'Andres','Madre');
-insert into CONTACTO values(74,'Berta','Madre');
-insert into CONTACTO values(75,'Felipe','Padrastro');
-insert into CONTACTO values(76,'Demian','Padrastro');
-insert into CONTACTO values(77,'Cesar','Padrastro');
-insert into CONTACTO values(78,'Angel','Padrastro');
-insert into CONTACTO values(79,'Kiara','Tia');
-insert into CONTACTO values(80,'Yoleinys','Tia');
-insert into CONTACTO values(81,'Amelia','Tia');
-insert into CONTACTO values(82,'Nathaly','Hermana');
-insert into CONTACTO values(83,'Vanessa','Hermana');
-insert into CONTACTO values(84,'Sofia','Hermana');
-insert into CONTACTO values(85,'Ruperta','Hermana');
-insert into CONTACTO values(86,'Andres','Hijo');
-insert into CONTACTO values(87,'Alejandro','Hijo');
-insert into CONTACTO values(88,'Bianca','Esposa');
-insert into CONTACTO values(89,'Camila','Esposa');
-insert into CONTACTO values(90,'Dayana','Esposa');
-insert into CONTACTO values(91,'Freddy','Esposo');
-insert into CONTACTO values(92,'Gabriela','Esposa');
-insert into CONTACTO values(93,'Jimy','Esposo');
-insert into CONTACTO values(94,'Valentina','Esposa');
+insert into CONTACTO(co_nombre,co_descripcion) values( 'Jorge','primo'),
+('Alejandro','primo'),
+( 'Elias','hermano'),
+( 'Jose','hermano'),
+( 'Gabriel','tio'),
+( 'Herick','tio'),
+( 'Miguel','tio'),
+( 'Jormary','amiga'),
+( 'Camila','papa'),
+('Maria','Hijo'),
+('Lucho','Hijo'),
+('Luis','Hijo'),
+('Juan','Hijo'),
+('Rebeca','Mamá'),
+('Carolina','Tia'),
+('Laura','Tia'),
+('Valeria','Tia'),
+('Miriam','Tia'),
+('Manuela','Tia'),
+('Pablo','Padrastro'),
+('Mercedes','Padrastro'),
+('Nazareth','Padrastro'),
+('Dexire','Padrastro'),
+('Sara','Padrastro'),
+('Daniela','Padrastro'),
+('Dayana','Mamá'),
+('Karla','Papá'),
+('Kelly','Papá'),
+('Katherine','Papá'),
+('Xiomara','Papá'),
+('Felicia','Papá'),
+('Carlos','Papá'),
+('Natalia','Papá'),
+('Lionel','Hijo'),
+('Isabella','Tia'),
+('Mariam','Tia'),
+('Maximo','Tia'),
+('Bianca','Tia'),
+('Roberto','Tia'),
+('Andy','Tio'),
+('Vanessa','Mamá'),
+('Maribel','Mamá'),
+('Victor','Papá'),
+('Jimy','Mamá'),
+('Yuliana','Mamá'),
+('Eliana','Mamá'),
+('Nina','Hijo'),
+('Pedro','Hijo'),
+('Sofia','Suegro'),
+('Betania','Suegro'),
+('Gabriela','Suegro'),
+('Graciela','Suegro'),
+('Veronica','Suegro'),
+('Yuleixi','Suegro'),
+('Franchecha','cuñado'),
+('Joan','cuñado'),
+('David','cuñado'),
+('Juliana','cuñado'),
+('Manuel','cuñado'),
+('Gregorio','cuñado'),
+('Emirse','Yerno'),
+('Zulema','Yerno'),
+('Yamira','Yerno'),
+('Estefany','Yerno'),
+('Wendy','Yerno'),
+('Emilio','Yerno'),
+('Ronald','Yerno'),
+('Ana','Yerno'),
+('Karina','Yerno'),
+('Marianny','tio'),
+('Valentina','Madre'),
+('Andrea','Madre'),
+('Andres','Madre'),
+('Berta','Madre'),
+('Felipe','Padrastro'),
+('Demian','Padrastro'),
+('Cesar','Padrastro'),
+('Angel','Padrastro'),
+('Kiara','Tia'),
+('Yoleinys','Tia'),
+('Amelia','Tia'),
+('Nathaly','Hermana'),
+('Vanessa','Hermana'),
+('Sofia','Hermana'),
+('Ruperta','Hermana'),
+('Andres','Hijo'),
+('Alejandro','Hijo'),
+('Bianca','Esposa'),
+('Camila','Esposa'),
+('Dayana','Esposa'),
+('Freddy','Esposo'),
+('Gabriela','Esposa'),
+('Jimy','Esposo'),
+('Valentina','Esposa');
+
+
+INSERT INTO JUR_CON(jc_contacto,jc_clientejuridico) VALUES(7941589),
+(1,93561785),
+(2,16943631),   
+(3,5140801),
+(4,7135453),
+(5,18242552),
+(6,41222746),
+(7,0360485),
+(8,30582324),
+(9,2176557),
+(10,6221322),
+(11,8978093),
+(12,2568349),
+(13,00561977),
+(14,79105540),
+(15,86477726),
+(16,54933866),
+(17,76045442),
+(18,0361119),
+(19,85731743),
+(20,0016553),
+(21,99984296),
+(22,4394645),
+(23,92394915),
+(24,54213681),
+(25,63347793),
+(26,65702565),
+(27,7759434),
+(28,89445910),
+(29,07705783),
+(30,0665596),
+(31,8648346),
+(32,88121140),
+(33,85245698),
+(34,96358265),
+(35,5454639),
+(36,5457482),
+(37,8784823),
+(38,6157756),
+(39,2254893),
+(40,81125140),
+(41,17705593),
+(42,66655841),
+(43,65723955),
+(44,56454917),
+(45,18159552),
+(46,18159553),
+(47,18159554),
+(48,18159555),
+(49,18159556),
+(50,18159557),
+(51,18159558),
+(52,18159559),
+(53,18159560),
+(54,18159561),
+(55,18159562),
+(56,18159563),
+(57,18159564),
+(58,18159565),
+(59,18159566),
+(60,18159567),
+(61,18159568),
+(62,81125141),
+(63,81125142),
+(64,81125143),
+(65,81125144),
+(66,81125145),
+(67,81125146),
+(68,81125147),
+(69,81125148),
+(70,81125149),
+(71,81125150),
+(72,81125151),
+(73,81125152),
+(74,81125153),
+(75,81125154),
+(76,81125155),
+(77,81125156),
+(78,81125157),
+(79,54546391),
+(80,54546392),
+(81,54546393);
