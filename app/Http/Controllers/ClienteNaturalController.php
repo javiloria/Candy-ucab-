@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use CandyUcab;
 use CandyUcab\Role;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 
 class ClienteNaturalController extends Controller
@@ -40,6 +41,7 @@ class ClienteNaturalController extends Controller
      */
     public function store(Request $request)
     {
+
        
 
         $validatedData = $request->validate([
@@ -55,6 +57,13 @@ class ClienteNaturalController extends Controller
             $file->move(public_path().'/images/', $name);
         }
 
+        $tiendas=DB::table('tienda')->where('t_tipotamano', 'Candy Shop - virtual')->get();
+        $string=json_encode($tiendas[0]);
+        $porciones = explode(":", $string);
+        $porciones2 = explode("}", $porciones[1]);
+        $porciones3 = explode(",", $porciones2[0]);
+        $tienda= intval($porciones3[0]);
+
         $clientenatural->c_n_rif = $request->input('c_n_rif');
         $clientenatural->c_n_cedula = $request->input('c_n_cedula');
         $clientenatural->c_n_pnombre = $request->input('c_n_pnombre');
@@ -64,6 +73,9 @@ class ClienteNaturalController extends Controller
         $clientenatural->c_n_correo = $request->input('c_n_correo');
         $clientenatural->fk_lugar = $request->input('fk_lugar');
         $clientenatural->fk_usuario = $request->input('u_username');
+
+        $clientenatural->fk_tienda=$tienda;
+
 
 /*
         $telefono = new Telefono();
@@ -146,7 +158,7 @@ class ClienteNaturalController extends Controller
     public function destroy(ClienteNatural $clientenatural)
     {
 
-    
+
         $telefonos = \DB::table('telefono')->where('fk_clientenatural', $clientenatural->c_n_rif)->delete();
 
         $file_path = public_path().'/images/'.$clientenatural->c_n_avatar;
@@ -163,3 +175,5 @@ class ClienteNaturalController extends Controller
 
     }
 }
+}
+

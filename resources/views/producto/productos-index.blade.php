@@ -17,6 +17,7 @@
           @if(Auth::user()->hasRole('user'))
           <form  action="/presupuestos" method="POST" class="form-group" >
               @csrf
+  <input type="text" class="form-control" name="cantidad[]" placeholder="cantidad" >
   <input type="checkbox" name='carrito[]' value= "{{$product->p_cod}}"> {{ __('Agregar al Carrito') }}
           @endif
     </div>
@@ -50,7 +51,7 @@
     </div>
 
       <ul>
-        <form  action="#" method="" >
+        <form  action="pedidos/crear" method="Post" >
         @csrf
         @php    $antes=0; $c=1;   @endphp
 
