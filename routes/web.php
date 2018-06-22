@@ -21,7 +21,15 @@ Route::view('registro-juridico', 'registro-juridico');
 Route::resource('clientenatural', 'ClienteNaturalController');
 Route::view('registro', 'registro')->middleware('guest');
 
+
+
+//Rutas para el registro juridico
+
 Route::resource('clientejuridico', 'ClienteJuridicoController');
+
+//Rutas para enviar los puntos
+Route::resource('punto', 'PuntoController');
+
 
 // Rutas para el login...
 Route::view('login','auth.login')->middleware('guest')->name('login');
@@ -84,6 +92,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('eliminar-producto', function() {
         return view('plataforma.eliminar-producto');
     });
+
     Route::resource('/pedidos','PedidoController');
     Route::POST('pedidos/crear','PedidoController@crear');
     
@@ -91,4 +100,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('credito','CreditoController');
     Route::resource('cheque','ChequeController');
     Route::resource('debito','DebitoController');
+
 });

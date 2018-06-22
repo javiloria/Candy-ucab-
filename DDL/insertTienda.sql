@@ -18,7 +18,7 @@ insert into tienda(t_tipoTamano, t_nombre, fk_lugar, t_imagen) values
 	('Mini Candy Shop', 'Mini Candy Shop - Los Teques', 1087, 'tienda-1.jpg'), -- Los Teques
 	('Mini Candy Shop', 'Mini Candy Shop - Anaco', 488, 'tienda-1.jpg'), -- Anaco
 	('Mini Candy Shop', 'Mini Candy Shop - San Casimiro', 595, 'tienda-1.jpg'), -- San Casimiro
-	('Mini Candy Shop', 'Mini Candy Shop - San Antonio de los Altos', 1097, 'tienda-1.jpg'), -- San Antonio de los Altos 
+	('Mini Candy Shop', 'Mini Candy Shop - San Antonio de los Altos', 1097, 'tienda-1.jpg'), -- San Antonio de los Altos
 	('Mini Candy Shop', 'Mini Candy Shop - Antímano', 1580, 'tienda-1.jpg'), -- Antímano
 	('Mini Candy Shop', 'Mini Candy Shop - Catia La Mar', 1444, 'tienda-1.jpg'), -- La Guaira
 	('Mini Candy Shop', 'Mini Candy Shop - Aguirre', 1170, 'tienda-1.jpg'), -- Margarita
@@ -37,7 +37,7 @@ insert into tienda(t_tipoTamano, t_nombre, fk_lugar, t_imagen) values
 	('Mini Candy Shop', 'Mini Candy Shop - San Blas', 752, 'tienda-1.jpg'), -- Valencia
 	('Mini Candy Shop', 'Mini Candy Shop - Maiquetía', 1448, 'tienda-1.jpg'), -- Maiquetía
 	('Mini Candy Shop', 'Mini Candy Shop - Maracapana', 1243, 'tienda-1.jpg'), -- Carúpano
-	('Mini Candy Shop', 'Mini Candy Shop - Mitare', 849, 'tienda-1.jpg'), -- Coro 	
+	('Mini Candy Shop', 'Mini Candy Shop - Mitare', 849, 'tienda-1.jpg'), -- Coro
 	('Mini Candy Shop', 'Mini Candy Shop - Matriz', 1425, 'tienda-1.jpg'), -- Trujillo
 	('Candy Shop', 'Candy Shop - Caracas', 1585, 'tienda-1.jpg'), -- Caracas (Sede Principal)
 	('Candy Shop - virtual', 'Candy Shop - Caracas', 1585, 'tienda-1.jpg'); --tienda virtual

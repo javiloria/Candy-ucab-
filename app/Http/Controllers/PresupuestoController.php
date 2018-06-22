@@ -15,9 +15,9 @@ class PresupuestoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+
+    public function index()
     {
-      return $request;
       $presupuesto=  DB::table('pro_pre')->where('pp_username', Auth::user()->u_username)->get();
       //le paso a la vista todos los productos enla BD
       return view ('presupuesto.carrito',compact('presupuesto'));
@@ -28,7 +28,20 @@ class PresupuestoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
+    public function create(Request $request)
+    {
+
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
     public function store(Request $request)
     {
         $pro_pre= new Pro_Pre();
@@ -41,6 +54,7 @@ class PresupuestoController extends Controller
           $montototal=$montototal+$precio->p_precio;
           $ppcantidad=$ppcantidad+1;
     }
+
  
     $presupuesto= new Presupuesto();
 
@@ -71,6 +85,7 @@ $pro_pre->save();
       $pro_pre= DB::table('pro_pre')->where('pp_username', $username)->get();
       //le paso a la vista todos los productos enla BD
       return view ('producto.productos-index',compact('producto','pro_pre'));
+
 
     }
 

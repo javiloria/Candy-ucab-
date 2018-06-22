@@ -9,7 +9,7 @@
 		<div class="col-md-offset-3 col-md-6">
 			<div class="contenedor-fomulario">
 				<h1 class="text-center estilo-escabezado-registro titulos-principales">Registro de usuario natural</h1>
-
+				
 				<form action="/clientenatural" class="form-group" method="POST" enctype="multipart/form-data" onsubmit="return validar();">
 				@csrf
 
@@ -70,7 +70,22 @@
 				<div class="form-group">
 						<label for="">Avatar: </label>
 						<input type="file" name= "c_n_avatar" />
+
+
+					@if($errors->any())
+						<div class="alert alert-danger">
+							@foreach($errors->all() as $error)
+							<ul>
+									<li> {{$error}} </li>
+							</ul>
+							@endforeach
+					 	</div>
+					@endif
+
+
 				</div>
+
+
 
 			<div class="contenedor-formulario">
 				<label for=""> Registro Usuario</label>
@@ -82,7 +97,9 @@
 						</div>
 
 					</div>
+
 			</div>
+
 			<div class="form-group">
 			<button type="submit" class="btn btn-block btn-lg btn-primary">Guardar</button>
 			</div>
@@ -113,5 +130,5 @@
 	</div>
 </div>
 
- <script src="{{ asset('/js/validaciones.js') }}"></script>
+ <script src="{{ asset('/js/validaciones-natural.js') }}"></script>
 @stop

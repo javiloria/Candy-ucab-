@@ -147,7 +147,7 @@ create table clientejuridico(
   constraint pk_clientejuridico Primary Key(c_j_rif),
   constraint FK_clientejuridico_usuario foreign key (fk_usuario) references Usuario(u_username),
   constraint checkcorreo_clientejridico check(c_j_correo LIKE '%@%.com'),
-  
+
   constraint FK_ClienteJuridico_Lugar foreign Key(fk_Lugar) references Lugar(l_cod),
   constraint FK_ClienteJuridico_LugarTienda foreign Key(fk_tienda) references tienda(t_cod)
 );
