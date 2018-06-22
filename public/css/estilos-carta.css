@@ -44,12 +44,12 @@
           margin-right:-15px;
           margin-left:-15px
     }
-    .col-sm{
-            position:relative;
-            width:100%;
-            min-height:1px;
-            padding-right:15px;
-            padding-left:15px;
+	.col-sm{
+			position:relative;
+			width:100%;
+			min-height:1px;
+			padding-right:15px;
+			padding-left:15px;
             -ms-flex-preferred-size:0;
             flex-basis:0;
             -ms-flex-positive:1;
@@ -69,55 +69,56 @@
         margin-bottom:.75rem
     }
     #contenedorElias{
-        padding-bottom: 20px;
+    	padding-bottom: 20px;
     }
     #contenedorCarta{
-        width: 22rem; 
-        padding: 10px 10px 10px 10px;
+    	width: 22rem;
+    	padding: 10px 10px 10px 10px;
+			margin-top: 40px;
     }
     #contenedorCarta2{
-        width: 40rem; 
+        width: 40rem;
         padding: 10px 10px 10px 10px;
     }
     .card-img-top{
-        width:100%;
-        border-top-left-radius:calc(.25rem - 1px);
-        border-top-right-radius:calc(.25rem - 1px);
+    	width:100%;
+    	border-top-left-radius:calc(.25rem - 1px);
+    	border-top-right-radius:calc(.25rem - 1px);
     }
     .rounded-circle{
-        border-radius:50%!important
+    	border-radius:50%!important
     }
     .mx-auto{
-        margin-right:auto!important;
+    	margin-right:auto!important;
         margin-left:auto!important
     }
     .d-block{
-        display:block!important
+    	display:block!important
     }
     #imagen-carta{
-        height: 100px; 
-        width: 100px; 
-        background-color: #EFEFEF; 
+        height: 100px;
+        width: 100px;
+        background-color: #EFEFEF;
         margin-left: 50px;
         margin-right: 50px;
         margin-top: 10px;
-        margin-bottom: 10px; 
+        margin-bottom: 10px;
     }
     #imagen-carta2{
-        height: 120px; 
-        width: 100px; 
-        background-color: #EFEFEF; 
+        height: 120px;
+        width: 100px;
+        background-color: #EFEFEF;
         border-radius:15px;
-        float: right; 
+        float: right;
     }
      #imagen-carta3{
-        height: 100px; 
-        width: 100px; 
+        height: 100px;
+        width: 100px;
         margin-right: 10px;
         margin-bottom: 10px;
-        background-color: #EFEFEF; 
+        background-color: #EFEFEF;
         border-radius:15px;
-        float: left; 
+        float: left;
     }
     #box{
 
