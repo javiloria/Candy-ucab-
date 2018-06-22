@@ -5,6 +5,7 @@ namespace CandyUcab\Http\Controllers;
 use Illuminate\Http\Request;
 use CandyUcab\Cheque;
 use CandyUcab\Pedido;
+use CandyUcab\Ped_sta;
 use Auth;
 use Illuminate\Support\Facades\DB;
 class ChequeController extends Controller

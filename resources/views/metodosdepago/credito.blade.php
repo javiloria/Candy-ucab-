@@ -33,7 +33,11 @@
 
         <label for="">Tipo </label>
         <div class="form-group">
-            <input type="text" class="form-control input-lg"  name= "tipo" placeholder="Cuenta"/>
+            <select name="tipo" >
+              <option  value="Gold"> Gold</option>
+               <option  value="Visa">Visa </option>
+               <option  value="Platino">Platino</option>
+            </select>
         </div>
 
         <label for="">Fecha vencimiento</label>

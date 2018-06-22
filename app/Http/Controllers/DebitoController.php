@@ -5,6 +5,7 @@ namespace CandyUcab\Http\Controllers;
     use Illuminate\Http\Request;
     use CandyUcab\Pedido;
     use CandyUcab\Debito;
+    use CandyUcab\Ped_sta;
     use Auth;
     use Illuminate\Support\Facades\DB;
 class DebitoController extends Controller

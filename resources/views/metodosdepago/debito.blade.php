@@ -33,7 +33,10 @@
 
         <label for="">Tipo </label>
         <div class="form-group">
-            <input type="text" class="form-control input-lg"  name= "cuenta" placeholder="Cuenta"/>
+           <select name="cuenta" >
+              <option  value="Maestro"> Maestro</option>
+               <option  value="American Express">American Express </option>
+            </select>
         </div>
 
         <label for="">Banco</label>

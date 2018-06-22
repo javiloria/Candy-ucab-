@@ -34,7 +34,10 @@
 
         <label for="">Cuenta </label>
         <div class="form-group">
-            <input type="text" class="form-control input-lg"  name= "cuenta" placeholder="Cuenta"/>
+            <select name="cuenta" >
+              <option  value="Ahorro"> Ahorro</option>
+               <option  value="Corriente"> Corriente</option>
+            </select>
         </div>
 
         <label for="">Banco</label>

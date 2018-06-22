@@ -25,7 +25,7 @@
     </div>
 
 
-    <select  id="estadoss" onChange="rellenaCombo('datos')" >
+    <select  id="estadoss" >
    		<?php
       foreach ($estado as $estadito ) {
 
@@ -34,7 +34,7 @@
            ?>
           </select>
 
-          <select id="municipioss" onChange="municipio()" disabled>
+          <select id="municipioss" >
          		<?php
               $municipio= DB::table('lugar')->where('l_tipo','Municipio')->orderBy('l_nombre','asc')->get();
             foreach ($municipio as $municipios ) {
@@ -44,7 +44,7 @@
                  ?>
                 </select>
 
-                <select name="fk_lugar" id="selecta" disabled >
+                <select name="fk_lugar" id="selecta" >
                   <?php
                     $parroquias= DB::table('lugar')->where('l_tipo','Parroquia')->orderBy('l_nombre','asc')->get();
                   foreach ($parroquias as $parroquia ) {
