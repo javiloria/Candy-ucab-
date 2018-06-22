@@ -22,14 +22,64 @@ CREATE TABLE SALARIO(
   CONSTRAINT PK_Salario_numero PRIMARY KEY(S_numero)
 );
 
+
+CREATE TABLE LUGAR(
+l_cod numeric(5),
+l_tipo varchar(15) NOT NULL,
+l_nombre varchar(50) NOT NULL,
+fk_lugar numeric(5),
+constraint PK_lugar primary key(l_cod),
+constraint fk_lugar foreign key( fk_lugar ) references lugar(l_cod),
+constraint Lugar_check_tipo check( l_tipo in('Estado','Municipio','Parroquia'))
+);
+
+
+create sequence con_id_sec
+increment by 1
+start with 1;
+
+create table contacto(
+  co_id integer DEFAULT nextval('con_id_sec'),
+  co_nombre varchar(30) not null,
+  co_descripcion varchar(191),
+  constraint PK_contacto Primary Key(co_id)
+);
+
+CREATE sequence tienda_cod_sec
+increment by 1
+start with 1;
+
+CREATE TABLE TIENDA(
+    t_cod integer DEFAULT nextval('tienda_cod_sec') ,
+    t_tipoTamano varchar(30) NOT NULL,
+    t_nombre varchar(50) NOT NULL,
+    fk_lugar numeric(5) NOT NULL,
+    t_imagen varchar(200),
+    constraint PK_Tienda PRIMARY KEY(t_cod),
+    constraint FK_Tienda_Lugar foreign key(fk_lugar) references Lugar(l_cod)
+);
+
+create table Usuario(
+  u_username varchar(50),
+  u_password varchar(255) NOT NULL,
+  remember_token varchar(100) ,
+  created_at timestamp(0) without time zone,
+  updated_at timestamp(0) without time zone,
+  fk_usuario_tienda integer not null,
+  constraint pk_usuario primary key(u_username),
+  constraint fk_tienda_usuario foreign key(fk_usuario_tienda) references TIENDA(t_cod)
+);
+
 CREATE TABLE Empleado(
   E_ci integer,
   E_nacionalidad  varchar(30) NOT NULL,
   E_especialidad  varchar(50) NOT NULL,
   E_fecha_ingreso timestamp NOT NULL,
   FK_salario integer    NOT NULL,
+  FK_tienda integer    NOT NULL,
   CONSTRAINT PK_Empleado PRIMARY KEY(E_ci)  ,
-  constraint FK_Empleado_salario FOREIGN key(FK_salario) references SALARIO(S_numero)
+  constraint FK_Empleado_salario FOREIGN key(FK_salario) references SALARIO(S_numero),
+  constraint FK_Empleado_tienda FOREIGN key(FK_tienda) references TIENDA(t_cod)
 );
 
 create sequence diario_sec
@@ -61,52 +111,6 @@ CREATE TABLE PRODUCTO (
     constraint PK_producto Primary Key(p_cod),
     constraint FK_producto_arsenal foreign Key(FK_arsenal) references ARSENAL(A_numero),
     constraint FK_producto_diario foreign Key(FK_diario) references Diario(D_cod)
-);
-
-
-CREATE TABLE LUGAR(
-l_cod numeric(5),
-l_tipo varchar(15) NOT NULL,
-l_nombre varchar(50) NOT NULL,
-fk_lugar numeric(5),
-constraint PK_lugar primary key(l_cod),
-constraint fk_lugar foreign key( fk_lugar ) references lugar(l_cod),
-constraint Lugar_check_tipo check( l_tipo in('Estado','Municipio','Parroquia'))
-);
-
-
-create sequence con_id_sec
-increment by 1
-start with 1;
-
-create table contacto(
-  co_id integer DEFAULT nextval('con_id_sec'),
-  co_nombre varchar(30) not null,
-  co_descripcion varchar(191),
-  constraint PK_contacto Primary Key(co_id)
-);
-
-create table Usuario(
-  u_username varchar(50),
-  u_password varchar(255) NOT NULL,
-  remember_token varchar(100) ,
-  created_at timestamp(0) without time zone,
-  updated_at timestamp(0) without time zone,
-  constraint pk_usuario primary key(u_username)
-);
-
-CREATE sequence tienda_cod_sec
-increment by 1
-start with 1;
-
-CREATE TABLE TIENDA(
-    t_cod integer DEFAULT nextval('tienda_cod_sec') ,
-    t_tipoTamano varchar(30) NOT NULL,
-    t_nombre varchar(50) NOT NULL,
-    fk_lugar numeric(5) NOT NULL,
-    t_imagen varchar(200),
-    constraint PK_Tienda PRIMARY KEY(t_cod),
-    constraint FK_Tienda_Lugar foreign key(fk_lugar) references Lugar(l_cod)
 );
 
 Create table ClienteNatural(
@@ -146,7 +150,7 @@ create table clientejuridico(
   fk_tienda integer NOT NULL,
   constraint pk_clientejuridico Primary Key(c_j_rif),
   constraint FK_clientejuridico_usuario foreign key (fk_usuario) references Usuario(u_username),
-  constraint checkcorreo_clientejridico check(c_j_correo LIKE '%@%.com'),
+  constraint checkcorreo_clientejridico check(c_j_correo LIKE '%@%.%'),
 
   constraint FK_ClienteJuridico_Lugar foreign Key(fk_Lugar) references Lugar(l_cod),
   constraint FK_ClienteJuridico_LugarTienda foreign Key(fk_tienda) references tienda(t_cod)
