@@ -23,6 +23,19 @@
           border-radius:.25rem;
           background-color: #EFEF;
     }
+    .card2{
+          position:relative;
+          display:-ms-flexbox;
+          display:flex;
+          -ms-flex-direction:column;
+          flex-direction:column;
+          min-width:0;
+          word-wrap:break-word;background-color:#fff;
+          background-clip:border-box;
+          border:1px solid rgba(0,0,0,.125);
+          border-radius:15px;
+          background-color: #EFEF;
+    }
     .row{
           display:-ms-flexbox;
           display:flex;
@@ -48,6 +61,10 @@
         flex:1 1 auto;
         padding:1.25rem
     }
+    .card-body1{
+        -ms-flex:1 1 auto;
+        flex:1 1 auto;
+    }
     .card-title{
         margin-bottom:.75rem
     }
@@ -56,6 +73,10 @@
     }
     #contenedorCarta{
         width: 22rem; 
+        padding: 10px 10px 10px 10px;
+    }
+    #contenedorCarta2{
+        width: 40rem; 
         padding: 10px 10px 10px 10px;
     }
     .card-img-top{
@@ -81,4 +102,24 @@
         margin-right: 50px;
         margin-top: 10px;
         margin-bottom: 10px; 
+    }
+    #imagen-carta2{
+        height: 120px; 
+        width: 100px; 
+        background-color: #EFEFEF; 
+        border-radius:15px;
+        float: right; 
+    }
+     #imagen-carta3{
+        height: 100px; 
+        width: 100px; 
+        margin-right: 10px;
+        margin-bottom: 10px;
+        background-color: #EFEFEF; 
+        border-radius:15px;
+        float: left; 
+    }
+    #box{
+
+      float: left;
     }
