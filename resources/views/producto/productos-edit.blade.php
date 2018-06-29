@@ -3,9 +3,9 @@
 
 
     <form class="form-group" action="/productos/{{$producto->p_cod}}" method="POST" enctype="multipart/form-data">
-     
+
           @method('PUT')
-          
+
           @csrf
 
           <div class="container">
@@ -52,10 +52,10 @@
 @section('title', 'Modificar producto')
 
 @section('contenido')
-  
+
     <form class="form-group" action="/productos/{{$producto->p_cod}}" method="POST" enctype="multipart/form-data">
        @method('PUT')
-          
+
           @csrf
   <div class="container">
     <div class="row">
@@ -76,8 +76,8 @@
         <option>3</option>
         <option>4</option>
         </select>
-            
-          
+
+
 
         <div class="modal-body">
                <div class="form-group">
@@ -94,7 +94,7 @@
                </div>
 
                <div class="form-group">
-                   <textarea class="form-control input-lg" placeholder="Descripción del producto"></textarea> 
+                   <textarea class="form-control input-lg" placeholder="Descripción del producto"></textarea>
                </div>
 
                <div class="form-group">
@@ -114,7 +114,7 @@
       </div>
     </div>
   </div>
-        
+
 
          </form>
 

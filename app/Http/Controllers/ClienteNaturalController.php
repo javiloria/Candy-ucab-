@@ -42,7 +42,7 @@ class ClienteNaturalController extends Controller
     public function store(Request $request)
     {
 
-       
+
 
         $validatedData = $request->validate([
             'c_n_avatar' => 'image'
@@ -57,7 +57,7 @@ class ClienteNaturalController extends Controller
             $file->move(public_path().'/images/', $name);
         }
 
-        
+
 
         $clientenatural->c_n_rif = $request->input('c_n_rif');
         $clientenatural->c_n_cedula = $request->input('c_n_cedula');
@@ -163,5 +163,3 @@ class ClienteNaturalController extends Controller
 
     }
 }
-
-
