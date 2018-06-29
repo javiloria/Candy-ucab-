@@ -1,0 +1,9 @@
+delete from lug_jur;
+delete from jur_con;
+delete from contacto;
+delete from role_usuario;
+delete from telefono;
+delete from carnet;
+delete from clientejuridico;
+delete from clientenatural;
+delete from usuario;
