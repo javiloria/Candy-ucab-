@@ -107,4 +107,29 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('cheque','ChequeController');
     Route::resource('debito','DebitoController');
 
+    //rutas para los reportes 
+
+    //Reporte de ingresos vz egresos de cada tienda
+    Route::get('ing-egre','ReportesController@viewingresovsegresos');
+    Route::post('ing-egre','ReportesController@ingresosvsegresos');
+
+    //Listado de los 10 clientes frecuentes por tienda ( mayor número de ventas ) por periodo de tiempo
+     Route::get('cli-frec','ReportesController@viewclientesfrecuentes');
+    Route::post('cli-frec','ReportesController@clientesfrecuentes');
+
+    //Listado por tiendas de clientes con presupuestos efectivos ( presupuestos que generaron compra) por tienda y por periodo de tiempo.
+    Route::get('pre-compra','ReportesController@viewgeneradorescompra');
+    Route::post('pre-compra','ReportesController@generadorescompra');
+
+    //Productos más vendido por tienda
+      Route::get('pro-vendido','ReportesController@viewproductosvendidos');
+    Route::post('pro-vendido','ReportesController@productosvendidos');
+
+    //Ranking de productos por Tienda y por lugar
+    Route::get('pro-ranking','ReportesController@viewproductosranking');
+    Route::post('pro-ranking','ReportesController@productosranking');
+
+    //puntos canjeados por tienda y por lugar
+    Route::get('punto-canjeado','ReportesController@viewpuntoscanjeados');
+    Route::post('punto-canjeado','ReportesController@puntoscanjeados');
 });

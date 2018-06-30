@@ -42,7 +42,7 @@ class ClienteNaturalController extends Controller
     public function store(Request $request)
     {
 
-       
+
 
         $validatedData = $request->validate([
             'c_n_avatar' => 'image'
@@ -57,12 +57,7 @@ class ClienteNaturalController extends Controller
             $file->move(public_path().'/images/', $name);
         }
 
-        $tiendas=DB::table('tienda')->where('t_tipotamano', 'Candy Shop - virtual')->get();
-        $string=json_encode($tiendas[0]);
-        $porciones = explode(":", $string);
-        $porciones2 = explode("}", $porciones[1]);
-        $porciones3 = explode(",", $porciones2[0]);
-        $tienda= intval($porciones3[0]);
+
 
         $clientenatural->c_n_rif = $request->input('c_n_rif');
         $clientenatural->c_n_cedula = $request->input('c_n_cedula');
@@ -74,13 +69,6 @@ class ClienteNaturalController extends Controller
         $clientenatural->fk_lugar = $request->input('fk_lugar');
         $clientenatural->fk_usuario = $request->input('u_username');
 
-        $clientenatural->fk_tienda=$tienda;
-
-
-/*
-        $telefono = new Telefono();
-        $telefono->t_numero = $request->input('t_numero');
-        $telefono->fk_clientenatural = $request->input('c_n_rif');*/
 
         $usuario = new Usuario();
         $usuario->u_username = $request->input('u_username');
@@ -175,5 +163,3 @@ class ClienteNaturalController extends Controller
 
     }
 }
-}
-

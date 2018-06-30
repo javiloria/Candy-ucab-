@@ -67,6 +67,8 @@ class ProductoController extends Controller
       $producto->p_nombre=$request->input('p_nombre');
       $producto->p_tipo=$request->input('p_tipo');
       $producto->p_precio=$request->input('p_precio');
+      $producto->p_cantidad=$request->input('p_cantidad');
+      $producto->p_descripcion=$request->input('p_descripcion');
       //guardando direccion de la imagen
       $producto->p_imagen=$name;
       //guardando en la BD

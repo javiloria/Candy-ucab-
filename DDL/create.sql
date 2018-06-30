@@ -83,7 +83,7 @@ create table Usuario(
   remember_token varchar(100) ,
   created_at timestamp(0) without time zone,
   updated_at timestamp(0) without time zone,
-  fk_usuario_tienda integer not null,
+  fk_usuario_tienda integer,
   constraint pk_usuario primary key(u_username),
   constraint fk_tienda_usuario foreign key(fk_usuario_tienda) references TIENDA(t_cod)
 );
@@ -150,15 +150,10 @@ create table clientejuridico(
   c_j_sitioweb varchar(100),
   c_j_capital numeric (15,2) not null,
   fk_usuario varchar(50),
-  fk_Lugar numeric(5) NOT NULL,
-  fk_tienda integer NOT NULL,
   constraint pk_clientejuridico Primary Key(c_j_rif),
   constraint FK_clientejuridico_usuario foreign key (fk_usuario) references Usuario(u_username),
-  constraint checkcorreo_clientejridico check(c_j_correo LIKE '%@%.%'),
-
-  constraint FK_ClienteJuridico_Lugar foreign Key(fk_Lugar) references Lugar(l_cod),
-  constraint FK_ClienteJuridico_LugarTienda foreign Key(fk_tienda) references tienda(t_cod)
-);
+  constraint checkcorreo_clientejridico check(c_j_correo LIKE '%@%.%')
+ );
 create sequence lj_id_sec
 increment by 1
 start with 1;
