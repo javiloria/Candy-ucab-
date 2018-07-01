@@ -51,7 +51,7 @@ Route::view('nosotros', 'nosotros');
 Route::group(['middleware' => ['auth']], function() {
 
     Route::resource('/presupuestos','PresupuestoController');
-
+    Route::resource('/privilegios','PrivilegioController');
     Route::view('ofertas','ofertas');
 
     //CRUD DE manejo de roles y permisos

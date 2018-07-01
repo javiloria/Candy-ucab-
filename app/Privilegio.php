@@ -8,6 +8,8 @@ class Privilegio extends Model
 {
    	//definiendo los atributos actualizables
   	protected $fillable= ['p_nombre'];
+  	//definiendo la clave primaria
+protected $primaryKey = 'p_cod';
   	//definiendo a que tabla se refiere este modelo
 	protected $table = 'privilegio';
 	

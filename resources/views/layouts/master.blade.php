@@ -92,6 +92,13 @@ else {
 							<li><a class="item-menu" href="/nosotros">Nosotros</a></li>
 							<li><a class="item-menu" href="/ofertas">Ofertas</a></li>
 							<li><a class="item-menu" href="/contacto">Contacto</a></li>
+							@if(Auth::check())
+							@if (Auth::user()->hasRole('admin')) 
+  									<li><a  class="item-menu" href="/usuario">Admin </a></li>
+
+							@endif
+							@endif
+
 						</ul>
 					</nav>
 				</header>

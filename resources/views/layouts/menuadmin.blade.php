@@ -49,7 +49,7 @@
 			<li><a class="item-menu" href="/clientejuridico">Cliente Juridico</a></li>
 			<li><a class="item-menu" href="/punto/create">Puntos</a></li>
 			<li><a class="item-menu" href="/reportes">Reportes</a></li>
-			<li><a class="item-menu" href="#">Privilegios</a></li>
+			<li><a class="item-menu" href="/privilegios">Privilegios</a></li>
 	      </ul>
 			<hr>
 	      <ul class="nav navbar-nav navbar-right text-center">
@@ -89,11 +89,12 @@ else {
 							<li><a class="item-menu" href="/">Inicio</a></li>
 							<li><a class="item-menu" href="/roles">Roles</a></li>
 							<li><a class="item-menu" href="/clientenatural">Cliente Natural</a></li>
+							<li><a class="item-menu" href="/usuario">Usuario</a></li>
 							<li><a href="#"><img class="logo" src="{{asset('imgs/sweet.png')}}" alt="Logotipo"></a></li>
 							<li><a class="item-menu" href="/clientejuridico">Cliente Juridico</a></li>
 							<li><a class="item-menu" href="/punto/create">Puntos</a></li>
 							<li><a class="item-menu" href="/reportes">Reportes</a></li>
-							<li><a class="item-menu" href="#">Privilegios</a></li>
+							<li><a class="item-menu" href="/privilegios">Privilegios</a></li>
 						</ul>
 					</nav>
 				</header>
