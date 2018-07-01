@@ -39,6 +39,7 @@ DROP TABLE  USUARIO;
 DROP TABLE  ROLES;
 DROP TABLE  TIENDA;
 DROP TABLE  LUGAR;
+DROP TABLE PRIVILEGIO;
 -- ELiminacion de secuencias
 DROP SEQUENCE con_id_sec;
 DROP SEQUENCE presupuesto_pcod_seq;
@@ -70,3 +71,4 @@ DROP SEQUENCE his_id_sec;
 DROP SEQUENCE jc_id_sec;
 DROP SEQUENCE lj_id_sec;
 DROP SEQUENCE pun_id_sec;
+DROP SEQUENCE pri_seq;

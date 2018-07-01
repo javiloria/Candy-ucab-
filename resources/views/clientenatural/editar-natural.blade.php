@@ -1,5 +1,4 @@
-@extends('layouts.master')
-
+@extends('layouts.menuadmin')
 @section('title', 'Actualizar CLiente Natural')
 
 @section('contenido')

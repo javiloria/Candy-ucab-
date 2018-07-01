@@ -551,3 +551,26 @@ CREATE TABLE PAGO(
   constraint FK_Pago_credito FOREIGN key(FK_credito) references CREDITO (MP_cod ),
   constraint FK_Pago_cheque FOREIGN key(FK_cheque) references CHEQUE (MP_cod )
 );
+
+create sequence pri_seq
+increment by 1
+start with 1;
+
+Create table Privilegio(
+  p_cod int DEFAULT  nextval('pri_seq'),
+  p_nombre varchar(50) Not NULL,
+  constraint PK_privilegio primary key(p_cod)
+);
+
+Create sequence rol_privilegio_seq
+increment by 1
+start with 1;
+
+Create Table Rol_Privilegio(
+r_p_id int default Nextval('rol_privilegio_seq'),
+r_p_rol int ,
+r_p_privilegio int,
+  constraint PK_R_P primary key(r_p_id),
+  constraint FK_R_P_rol Foreign key(r_p_rol) references Roles  (id),
+  constraint FK_R_P_privilegio Foreign key(r_p_privilegio) references Privilegio  (p_cod)
+);
