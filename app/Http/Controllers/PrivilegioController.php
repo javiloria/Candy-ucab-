@@ -3,11 +3,9 @@
 namespace CandyUcab\Http\Controllers;
 
 use Illuminate\Http\Request;
-use CandyUcab\Role;
 use CandyUcab\Privilegio;
-use CandyUcab\Rol_Privilegio;
 use Illuminate\Support\Facades\DB;
-class RolesController extends Controller
+class PrivilegioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,9 @@ class RolesController extends Controller
      */
     public function index()
     {
-        $roles= Role::all();
+        $privilegio= Privilegio::all();
       //le paso a la vista todos los productos enla BD
-      return view ('roles.index-roles',compact('roles'));
+      return view ('privilegios.index-privilegio',compact('privilegio'));
     }
 
     /**
@@ -27,10 +25,9 @@ class RolesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-
     {
-        $privilegios= Privilegio::all();
-        return view ('roles.create-roles',compact('privilegios'));
+        return view ('privilegios.create-privilegio');
+    
     }
 
     /**
@@ -41,23 +38,12 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        $rol=new Role();
-        $rol_privilegio= new Rol_Privilegio();
-        $rol->name = $request->input('r_nombre');
-        $rol->description = $request->input('r_descripcion');
-        $rol->save();
-        $roles=  DB::table('roles')->where('name', $request->input('r_nombre'))->where('description',$request->input('r_descripcion'))->get();
-        foreach ($roles as $rolsito ) {
-            $salida=$rolsito->id;
-        }
-        
-        $rol_privilegio->r_p_privilegio =$request->input('privilegio');
-        $rol_privilegio->r_p_rol =$salida;
-        $rol_privilegio->save();
-
-         $roles= Role::all();
+        $privilegio= new Privilegio();
+        $privilegio->p_nombre = $request->input('nombre');    
+        $privilegio->save();
+        $privilegio= Privilegio::all();
       //le paso a la vista todos los productos enla BD
-      return view ('roles.index-roles',compact('roles'));
+      return view ('privilegios.index-privilegio',compact('privilegio'));
 
     }
 
@@ -69,9 +55,9 @@ class RolesController extends Controller
      */
     public function show($id)
     {
-        $privilegios=  DB::table('rol_privilegio')->where('r_p_rol', $id)->get();
-        $roles=  DB::table('roles')->where('id', $id)->get();
-      return view ('roles.show-roles',compact('roles','privilegios'));
+       $privilegios=  DB::table('privilegio')->where('p_cod', $id)->get();
+    
+      return view ('privilegios.show-privilegio',compact('privilegios'));
     }
 
     /**
@@ -105,15 +91,12 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-        
-            DB::table('rol_privilegio')->where('r_p_rol',$id )->delete();
+        DB::table('privilegio')->where('p_cod',$id )->delete();
 
-          $rol=  DB::table('roles')->where('id',$id )->delete();
-          //borrando los datos
-      
-      //devolver la vista index
-      $roles=  Role::all();
+          $privilegio= Privilegio::all();
       //le paso a la vista todos los productos enla BD
-      return view ('roles.index-roles',compact('roles'));
+      return view ('privilegios.index-privilegio',compact('privilegio'));
+      
+      
     }
 }

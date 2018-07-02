@@ -12,4 +12,7 @@ class Role extends Model
       ->belongsToMany('CandyUcab\Usuario','role_usuario', 'role_id','u_username')
       ->withTimestamps();
 }
+
+
+
 }

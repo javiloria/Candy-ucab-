@@ -11,7 +11,7 @@ class ReportesController extends Controller
 
     public function ingresosvsegresos(Request $request)
     {
-
+        $egresos = DB::select(DB::raw("SELECT * from tienda"));
     	 echo "aun no conectado ingress vs egress";
     	 echo $request->tienda;
     }
@@ -24,7 +24,7 @@ class ReportesController extends Controller
 
     public function clientesfrecuentes(Request $request)
     {
-
+         
     	 echo "aun no conectado clientes frecuentes";
     	 echo $request->tienda;
     }

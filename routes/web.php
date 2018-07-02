@@ -51,12 +51,12 @@ Route::view('nosotros', 'nosotros');
 Route::group(['middleware' => ['auth']], function() {
 
     Route::resource('/presupuestos','PresupuestoController');
-
+    Route::resource('/privilegios','PrivilegioController');
     Route::view('ofertas','ofertas');
 
     //CRUD DE manejo de roles y permisos
-    Route::resource('roles','RoleController');
-    Route::resource('users','UserController');
+    Route::resource('/roles','RolesController');
+    Route::resource('/usuario','UsuarioController');
 
     //ruta para los controladores que haran la funcion de CRUD
     Route::resource('/productos','ProductoController');
@@ -132,4 +132,7 @@ Route::group(['middleware' => ['auth']], function() {
     //puntos canjeados por tienda y por lugar
     Route::get('punto-canjeado','ReportesController@viewpuntoscanjeados');
     Route::post('punto-canjeado','ReportesController@puntoscanjeados');
+
+    //ruta principal para reportes 
+    Route::view('/reportes','reporte.Reportesprincipal');
 });

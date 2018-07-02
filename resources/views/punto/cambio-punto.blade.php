@@ -1,4 +1,5 @@
-@extends('layouts.master')
+@extends('layouts.menuadmin')
+
 
 @section('title', 'Actualizacion de Punto')
 

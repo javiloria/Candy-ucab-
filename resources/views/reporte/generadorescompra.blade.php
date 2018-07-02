@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.menuadmin')
 
 @section('title', 'Presupuestos Compras')
 

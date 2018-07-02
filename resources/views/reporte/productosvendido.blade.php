@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.menuadmin')
 
 @section('title', 'Ranking Productos mas vendidos ')
 

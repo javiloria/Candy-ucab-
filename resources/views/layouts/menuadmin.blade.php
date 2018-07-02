@@ -44,11 +44,12 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav text-center">
 	        <li><a href="/">Inicio</a></li>
-	        <li class="active"><a href="productos">Productos</a></li>
-	        <li><a href="/tiendas">Tiendas</a></li>
-	        <li><a href="/nosotros">Nosotros</a></li>
-	        <li><a href="/ofertas">Ofertas</a></li>
-	        <li><a href="/contacto">Contacto</a></li>
+	        <li><a class="item-menu" href="/roles">Roles</a></li>
+			<li><a class="item-menu" href="/clientenatural">Cliente Natural</a></li>
+			<li><a class="item-menu" href="/clientejuridico">Cliente Juridico</a></li>
+			<li><a class="item-menu" href="/punto/create">Puntos</a></li>
+			<li><a class="item-menu" href="/reportes">Reportes</a></li>
+			<li><a class="item-menu" href="/privilegios">Privilegios</a></li>
 	      </ul>
 			<hr>
 	      <ul class="nav navbar-nav navbar-right text-center">
@@ -86,19 +87,14 @@ else {
 					<nav>
 						<ul class="list-inline text-center">
 							<li><a class="item-menu" href="/">Inicio</a></li>
-							<li><a class="item-menu" href="/productos">Productos</a></li>
-							<li><a class="item-menu" href="/tiendas">Tiendas</a></li>
+							<li><a class="item-menu" href="/roles">Roles</a></li>
+							<li><a class="item-menu" href="/clientenatural">Cliente Natural</a></li>
+							<li><a class="item-menu" href="/usuario">Usuario</a></li>
 							<li><a href="#"><img class="logo" src="{{asset('imgs/sweet.png')}}" alt="Logotipo"></a></li>
-							<li><a class="item-menu" href="/nosotros">Nosotros</a></li>
-							<li><a class="item-menu" href="/ofertas">Ofertas</a></li>
-							<li><a class="item-menu" href="/contacto">Contacto</a></li>
-							@if(Auth::check())
-							@if (Auth::user()->hasRole('admin')) 
-  									<li><a  class="item-menu" href="/usuario">Admin </a></li>
-
-							@endif
-							@endif
-
+							<li><a class="item-menu" href="/clientejuridico">Cliente Juridico</a></li>
+							<li><a class="item-menu" href="/punto/create">Puntos</a></li>
+							<li><a class="item-menu" href="/reportes">Reportes</a></li>
+							<li><a class="item-menu" href="/privilegios">Privilegios</a></li>
 						</ul>
 					</nav>
 				</header>
