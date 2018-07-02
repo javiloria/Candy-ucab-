@@ -11,9 +11,11 @@ class ReportesController extends Controller
 
     public function ingresosvsegresos(Request $request)
     {
-        $egresos = DB::select(DB::raw("SELECT * from tienda"));
+        $egresos = DB::select(DB::raw("SELECT sum(pr.pp_cantidad*pro.p_precio) from tienda t,pedido p, presupuesto pre,pro_pre pr,producto pro where p.fk_tienda=$request->tienda AND p.p_nombre= pre.fk_pedido AND pre.p_cod=pr.fk_pre_cod" 
+
+        ));
     	 echo "aun no conectado ingress vs egress";
-    	 echo $request->tienda;
+    	 print_r($egresos);
     }
 
     public function viewingresovsegresos(){
@@ -86,10 +88,38 @@ public function productosvendidos(Request $request)
 
      public function viewpuntoscanjeados(){
 
-    	$tiendas=  Tienda::all();
-		return view('reporte.puntoscanjeado',compact('tiendas'));
+    	$tiendas=    Tienda::all();
+        $estado=     DB::table('lugar')->where('l_tipo', 'Estado')->get();
+        $municipio=  DB::table('lugar')->where('l_tipo', 'Municipio')->get();
+        $parroquia=  DB::table('lugar')->where('l_tipo', 'Parroquia')->get();
+		return view('reporte.puntoscanjeado',compact('tiendas','estado','municipio','parroquia'));
     }
 
+    public function viewmesmasrentablelugar(){
 
+        $estado=     DB::table('lugar')->where('l_tipo', 'Estado')->get();
+        $municipio=  DB::table('lugar')->where('l_tipo', 'Municipio')->get();
+        $parroquia=  DB::table('lugar')->where('l_tipo', 'Parroquia')->get();
+        return view('reporte.mesmasrentabletiendalugar',compact('estado','municipio','parroquia'));
+
+    }
+
+    public function mesmasrentablelugar(Request $request){
+        echo "mes mas rentabe lugar";
+
+    }
+
+    // 5 mejores clientes (según monto de compras) por periodo de tiempo
+    public function clientemejores(Request $request){
+        echo "mejores clientes";
+
+    }
+
+    public function viewclientemejores(){
+        
+        return view('reporte.cincomejorestiempo');
+
+    }
+    
 
 }

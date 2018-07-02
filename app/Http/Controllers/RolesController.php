@@ -14,8 +14,9 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $request->user()->authorizeRoles(['admin']);
         $roles= Role::all();
       //le paso a la vista todos los productos enla BD
       return view ('roles.index-roles',compact('roles'));
@@ -26,9 +27,9 @@ class RolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
 
-    {
+    {   $request->user()->authorizeRoles(['admin']);
         $privilegios= Privilegio::all();
         return view ('roles.create-roles',compact('privilegios'));
     }
@@ -40,7 +41,7 @@ class RolesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   $request->user()->authorizeRoles(['admin']);
         $rol=new Role();
         $rol_privilegio= new Rol_Privilegio();
         $rol->name = $request->input('r_nombre');
@@ -67,8 +68,8 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show(Request $request,$id)
+    {   $request->user()->authorizeRoles(['admin']);
         $privilegios=  DB::table('rol_privilegio')->where('r_p_rol', $id)->get();
         $roles=  DB::table('roles')->where('id', $id)->get();
       return view ('roles.show-roles',compact('roles','privilegios'));
@@ -80,9 +81,11 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request,Role $rol,$id)
     {
-        //
+        
+        $privilegios= Privilegio::all();
+        return view ('roles.edit-roles',compact('privilegios','rol'));
     }
 
     /**
@@ -94,7 +97,7 @@ class RolesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -103,9 +106,9 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        
+            $request->user()->authorizeRoles(['admin']);
             DB::table('rol_privilegio')->where('r_p_rol',$id )->delete();
 
           $rol=  DB::table('roles')->where('id',$id )->delete();

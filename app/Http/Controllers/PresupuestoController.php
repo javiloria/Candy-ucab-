@@ -44,6 +44,7 @@ class PresupuestoController extends Controller
 
     public function store(Request $request)
     {
+      return $request;
         $pro_pre= new Pro_Pre();
       $montototal=0;  $ppcantidad=0;
       foreach ($request->carrito as $producto)  {

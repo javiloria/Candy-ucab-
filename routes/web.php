@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::view('ofertas','ofertas');
 
     //CRUD DE manejo de roles y permisos
+
     Route::resource('/roles','RolesController');
     Route::resource('/usuario','UsuarioController');
 
@@ -106,6 +107,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('credito','CreditoController');
     Route::resource('cheque','ChequeController');
     Route::resource('debito','DebitoController');
+    Route::get('/pagar-punto','VentasController@viewpagarpunto');
+    Route::post('/pagar-punto','VentasController@pagarpunto');
 
     //rutas para los reportes 
 
@@ -133,6 +136,24 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('punto-canjeado','ReportesController@viewpuntoscanjeados');
     Route::post('punto-canjeado','ReportesController@puntoscanjeados');
 
+
+    //mes mas rentable por lugar
+    Route::get('mes-rentable','ReportesController@viewmesmasrentablelugar');
+    Route::post('mes-rentable','ReportesController@mesmasrentablelugar');
+    
+    //mes mas rentable por lugar
+    Route::get('cliente-mejores','ReportesController@viewclientemejores');
+    Route::post('cliente-mejores','ReportesController@clientemejores');
+
     //ruta principal para reportes 
     Route::view('/reportes','reporte.Reportesprincipal');
+
+    //manejar ventas
+    Route::get('/ventas-iniciar','VentasController@iniciarventaview');
+    Route::post('/ventas-iniciar','VentasController@iniciarventa');
+    Route::get('/ventas-facturacion','VentasController@');
+    Route::post('/ventas-facturacion','VentasController@facturacion');
+
+    Route::view('/repo','reporte.reportesmostrar.ingresovsegreso');
+
 });

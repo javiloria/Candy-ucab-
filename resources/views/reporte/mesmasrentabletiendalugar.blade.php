@@ -1,15 +1,15 @@
 @extends('layouts.menuadmin')
 
-@section('title', 'Puntos Canjeados')
+@section('title', 'Repoorte -Mes mas rentable')
 
 @section('contenido')
- <form class="form-group" action="{{ action('ReportesController@puntoscanjeados') }}" method="POST" >
+<form class="form-group" action="{{ action('ReportesController@mesmasrentablelugar') }}" method="POST" >
           @csrf
 
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-center">
-        <h1 class="titulos-principales">Puntos Canjeados </h1>
+        <h1 class="titulos-principales">Mes Mas Rentable por Lugar</h1>
       </div>
     </div>
 
@@ -21,39 +21,27 @@
 
                
 
-          <label for="">tienda </label>
-        <div class="form-group">
-            <select name="tienda" >
-
-              @foreach($tiendas as $tienda)
-                 <option  value="{{$tienda->t_cod}}">{{$tienda->t_nombre}} </option>
-                 
-                @endforeach
-
-            </select>
-        </div>
-        
-          <label for="">Estado: <br/> </label>
-    <select   >
-      <?php
+          <label for="">estado</label>
+    <select  id="estadoss" >
+   		<?php
       foreach ($estado as $estadito ) {
 
-        echo "<option value=".$estadito->l_cod.">".$estadito->l_nombre."</option>";
-        }
+   			echo "<option value=".$estadito->l_cod.">".$estadito->l_nombre."</option>";
+   			}
            ?>
           </select>
-          <label for="">Municipio:</label>
-          <select >
-            <?php
+          <label for="">municipio</label>
+          <select id="municipioss" >
+         		<?php
               $municipio= DB::table('lugar')->where('l_tipo','Municipio')->orderBy('l_nombre','asc')->get();
             foreach ($municipio as $municipios ) {
 
-              echo "<option value=".$municipios->l_cod.">".$municipios->l_nombre."</option>";
-              }
+         			echo "<option value=".$municipios->l_cod.">".$municipios->l_nombre."</option>";
+         			}
                  ?>
                 </select>
-                <label for="">Parroquia:</label>
-                <select name="fk_lugar"  >
+                <label for="">parroquia</label>
+                <select name="fk_lugar" id="selecta" >
                   <?php
                     $parroquias= DB::table('lugar')->where('l_tipo','Parroquia')->orderBy('l_nombre','asc')->get();
                   foreach ($parroquias as $parroquia ) {
@@ -62,11 +50,6 @@
                     }
                        ?>
                       </select>
-
-
-          
-
-
 
                <div class="form-group">
                    <input type="submit"  class="btn btn-block btn-lg btn-primary" value="Generar Reporte"/>
