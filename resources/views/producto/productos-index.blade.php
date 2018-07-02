@@ -27,12 +27,13 @@
 @stop
 @section('media')
   @if(Auth::user()->hasRole('admin'))
-
+    <div class="form-group text-center">
     <a class="btn btn-primary btn-lg botoncito" href="/productos/create">Crear Producto</a>
+    </div>
   @elseif(Auth::user()->hasRole('user'))
 
           <div class="form-group text-center">
-
+          
     			<button type="submit" class="btn btn-lg btn-primary">Agregar Carrito</button>
 
         </div> <br></br>

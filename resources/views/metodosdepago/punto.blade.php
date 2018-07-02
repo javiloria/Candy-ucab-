@@ -22,13 +22,7 @@
         
       <form class="form-group" action="{{ action('VentasController@pagarpunto') }}" method="POST" >
       @csrf
-
-        <label for="">Nombre Pedido</label>
-        <div class="form-group">
-            <input type="text" class="form-control input-lg" name= "nombre" placeholder="Nombre Pedido" required />
-        </div>
-        
-        
+                
         <label for="">Puntos</label>
         <div class="form-group">
             <select name="punto" required>

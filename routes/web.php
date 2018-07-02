@@ -20,6 +20,11 @@ Route::view('registro', 'registro')->middleware('guest');
 Route::resource('clientejuridico', 'ClienteJuridicoController');
 //Rutas para enviar los puntos
 Route::resource('punto', 'PuntoController');
+
+//Rutas para enviar los puntos
+Route::resource('oferta', 'OfertaController');
+
+
 // Rutas para el login...
 Route::view('login','auth.login')->middleware('guest')->name('login');
 Route::post('login', 'Auth\LoginController@login')->name('login');
@@ -50,7 +55,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/registro-cliente-tienda', 'ClienteTiendaController@Vista');
     Route::get('/registro-cliente-tienda/{id}', 'ClienteTiendaController@Usuario');
     Route::post('/registro-cliente-tienda', 'ClienteTiendaController@Registro');
-    
+
     Route::get('/plataforma', function() {
         return view('plataforma.index');
     });
@@ -74,14 +79,14 @@ Route::group(['middleware' => ['auth']], function() {
     });
     Route::resource('/pedidos','PedidoController');
     Route::POST('pedidos/crear','PedidoController@crear');
-    
+
     Route::view('/pedido/pagar','Pedido.pagar');
     Route::resource('credito','CreditoController');
     Route::resource('cheque','ChequeController');
     Route::resource('debito','DebitoController');
     Route::get('/pagar-punto','VentasController@viewpagarpunto');
     Route::post('/pagar-punto','VentasController@pagarpunto');
-    //rutas para los reportes 
+    //rutas para los reportes
     //Reporte de ingresos vz egresos de cada tienda
     Route::get('ing-egre','ReportesController@viewingresovsegresos');
     Route::post('ing-egre','ReportesController@ingresosvsegresos');
@@ -103,16 +108,16 @@ Route::group(['middleware' => ['auth']], function() {
     //mes mas rentable por lugar
     Route::get('mes-rentable','ReportesController@viewmesmasrentablelugar');
     Route::post('mes-rentable','ReportesController@mesmasrentablelugar');
-    
+
     //mes mas rentable por lugar
     Route::get('cliente-mejores','ReportesController@viewclientemejores');
     Route::post('cliente-mejores','ReportesController@clientemejores');
-    //ruta principal para reportes 
+    //ruta principal para reportes
     Route::view('/reportes','reporte.Reportesprincipal');
     //manejar ventas
     Route::get('/ventas-iniciar','VentasController@iniciarventaview');
     Route::post('/ventas-iniciar','VentasController@iniciarventa');
     Route::get('/ventas-facturacion','VentasController@');
     Route::post('/ventas-facturacion','VentasController@facturacion');
-    Route::get('/repo','ReportesController@clientesconmaspuntos');
+    Route::get('/cliente-punto','ReportesController@clientesconmaspuntos');
 });
