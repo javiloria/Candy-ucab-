@@ -122,4 +122,26 @@ public function productosvendidos(Request $request)
     }
     
 
+    public function clientesconmaspuntos(){
+        
+         $clientes  = DB::select(DB::raw(" select nat.c_n_pnombre as nombre, nat.c_n_papellido as apellido,nat.c_n_cedula as ci
+            from clientenatural nat
+            where nat.fk_usuario in (select u.u_username  from punto pu,usuario u, clientenatural cn, clientejuridico cj
+            where pu.fk_usuario=u.u_username AND (u.u_username=cn.fk_usuario OR u.u_username=cj.fk_usuario)
+            group by(u.u_username)
+            order by sum(pu.pu_valor)
+            )
+            UNION
+            select  jur.c_j_dcomercial as nombre,jur.c_j_razonsocial as apellido,jur.c_j_rif as cedula
+            from clientejuridico jur
+            where jur.fk_usuario in (select u.u_username  from punto pu,usuario u, clientenatural cn, clientejuridico cj
+            where pu.fk_usuario=u.u_username AND (u.u_username=cn.fk_usuario OR u.u_username=cj.fk_usuario)
+            group by(u.u_username)
+            order by sum(pu.pu_valor)
+            )
+            limit 10 ;
+            "));
+        return view('reporte.reportesmostrar.clientes1',compact('clientes'));
+
+    }
 }
