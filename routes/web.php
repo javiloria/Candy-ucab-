@@ -30,6 +30,9 @@ Route::resource('clientejuridico', 'ClienteJuridicoController');
 //Rutas para enviar los puntos
 Route::resource('punto', 'PuntoController');
 
+//Rutas para enviar los puntos
+Route::resource('oferta', 'OfertaController');
+
 
 // Rutas para el login...
 Route::view('login','auth.login')->middleware('guest')->name('login');

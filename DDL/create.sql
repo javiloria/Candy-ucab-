@@ -464,13 +464,11 @@ CREATE TABLE OFERTA(
 CREATE TABLE DESCUENTO(
 
   D_cod integer DEFAULT nextval('descuento_seq'),
-  D_porcentaje numeric(3,2) NOT NULL,
-  FK_presupuesto integer,
+  D_porcentaje numeric(5,3) NOT NULL,
   FK_oferta1 integer,
   Fk_oferta2 numeric(20),
   fk_oferta3 integer,
   CONSTRAINT PK_Descuento_cod PRIMARY KEY(D_cod),
-  CONSTRAINT FK_empleado_descuento Foreign key(FK_presupuesto) references PRESUPUESTO(P_cod),
   Foreign key(FK_oferta1, fk_oferta2, fk_oferta3) references OFERTA(o_id, o_producto, o_diario)
 
 );

@@ -45,24 +45,20 @@ class DebitoController extends Controller
         $debito->mp_d_banco    = $request->input('banco');
         $debito->save();
 
-        $tiendas=DB::table('tienda')->where('t_tipotamano', 'Candy Shop - virtual')->get();
-        $string=json_encode($tiendas[0]);
-        $porciones = explode(":", $string);
-        $porciones2 = explode("}", $porciones[1]);
-        $porciones3 = explode(",", $porciones2[0]);
-        $tienda= intval($porciones3[0]);
+        $pedidos = \DB::select(DB::raw("SELECT p_nombre from Pedido"));
 
-        $pedido= new Pedido();
-        $pedido->p_nombre   =$request->input('nombre');
-        $pedido->p_tipo     ="compra natural";
-        $pedido->fk_usuario =Auth::user()->u_username;
-        //tienda virtual
-        $pedido->fk_tienda=$tienda;
-        $pedido->save();
+
+        for($i = 0; $i < count($pedidos); $i++){
+             if($i == count($pedidos)-1)
+                $pedido = $pedidos[$i]->p_nombre;
+        } 
+
+        $pedidos = 
+        \DB::table('pedido')->where('p_nombre', $pedido)->update(['p_tipo' => "compra debito"]);
 
         //llenando la n a n
         $ped_sta= new Ped_sta();
-          $ped_sta->fk_pedido =$request->input('nombre');
+          $ped_sta->fk_pedido =$pedido;
           $ped_sta->fk_status =2;
           $ped_sta->save();
         $username= Auth::user()->u_username;
