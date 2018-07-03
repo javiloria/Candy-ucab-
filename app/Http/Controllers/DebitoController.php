@@ -4,6 +4,8 @@ namespace CandyUcab\Http\Controllers;
 
     use Illuminate\Http\Request;
     use CandyUcab\Pedido;
+    use CandyUcab\Venta;
+    use CandyUcab\Pago;
     use CandyUcab\Debito;
     use CandyUcab\Ped_sta;
     use Auth;
@@ -45,13 +47,18 @@ class DebitoController extends Controller
         $debito->mp_d_banco    = $request->input('banco');
         $debito->save();
 
-        $pedidos = \DB::select(DB::raw("SELECT p_nombre from Pedido"));
+        $pedidos = \DB::select(DB::raw("SELECT p_nombre, fk_presupuesto from Pedido"));
 
 
         for($i = 0; $i < count($pedidos); $i++){
-             if($i == count($pedidos)-1)
+             if($i == count($pedidos)-1){
                 $pedido = $pedidos[$i]->p_nombre;
+                $presupuesto = $pedidos[$i]->fk_presupuesto;
+             }
         } 
+
+        $presupuestos = \DB::table('presupuesto')->where('p_cod', $presupuesto)->get();
+        foreach ($presupuestos as $pre);
 
         $pedidos = 
         \DB::table('pedido')->where('p_nombre', $pedido)->update(['p_tipo' => "compra debito"]);
@@ -62,6 +69,20 @@ class DebitoController extends Controller
           $ped_sta->fk_status =2;
           $ped_sta->save();
         $username= Auth::user()->u_username;
+
+        $venta = new Venta();
+        $venta->v_fechafac = $request->input('fechaact');
+        $venta->fk_pedido = $pedido;
+        $venta->fk_presupuesto = $presupuesto;
+        $venta->save();
+
+        $pago = new Pago();
+        $pago->p_monto = $pre->p_monto;
+        $pago->p_fechapago = $request->input('fechaact');
+        $pago->fk_pedido = $pedido;
+        $pago->fk_debito = $debito->mp_cod;
+        $pago->save();
+
         $pedido= DB::table('pedido')->where('fk_usuario', $username)->get();
         //le paso a la vista todos los pedidos enla BD
       return view ('Pedido.pedido-index',compact('pedido'));

@@ -50,7 +50,9 @@ CREATE TABLE PRODUCTO (
     constraint FK_producto_arsenal foreign Key(FK_arsenal) references ARSENAL(A_numero)
 );
 
-
+alter table producto add column fk_tienda integer;
+alter table producto add constraint fk_tienda_producto 
+foreign key (fk_tienda) references tienda(t_cod);
 
 create sequence con_id_sec
 increment by 1
@@ -433,6 +435,9 @@ CREATE TABLE VENTA(
   constraint FK_venta_departamento Foreign key(FK_departamento)  references DEPARTAMENTO(D_numero),
   constraint FK_venta_ped_dep Foreign key(FK_ped_dep) references PED_DEP(PD_cod)
 );
+
+alter table venta add column fk_presupuesto integer;
+alter table venta add constraint fk_pre_vent foreign key (fk_presupuesto) references presupuesto(p_cod);
 
 CREATE sequence textura_seq
 increment by 1

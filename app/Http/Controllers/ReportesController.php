@@ -2,21 +2,46 @@
 
 namespace CandyUcab\Http\Controllers;
 
+use CandyUcab\Tienda;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use CandyUcab\Tienda;
+
 class ReportesController extends Controller
 {
     //Reporte de ingresos vs egresos de cada tienda
 
-    public function ingresosvsegresos(Request $request)
+    public function clientesporcompra()
     {
-        $egresos = DB::select(DB::raw("SELECT sum(pr.pp_cantidad*pro.p_precio) from tienda t,pedido p, presupuesto pre,pro_pre pr,producto pro where p.fk_tienda=$request->tienda AND p.p_nombre= pre.fk_pedido AND pre.p_cod=pr.fk_pre_cod" 
+        $clientesporcompra = DB::select(DB::raw("
+          SELECT C.c_n_pnombre, C.c_n_papellido, Sum(pa.p_monto)
+          from clientenatural C, usuario U, pedido P, Pago Pa,
+          Credito mc, Debito mb
+          where
+          C.fk_usuario = U.u_username and
+          P.fk_usuario = U.u_username and
+          Pa.fk_pedido = P.p_nombre and
+          (Pa.fk_credito = mc.mp_cod or Pa.fk_debito = mb.mp_cod)
+          group by C.c_n_pnombre, C.c_n_papellido
+          order by Sum(pa.p_monto) desc
+          Limit 5"));
 
-        ));
-    	 echo "aun no conectado ingress vs egress";
-    	 print_r($egresos);
+        return view('reporte.clientesporcompra', compact('clientesporcompra'));
     }
+
+    public function asistenciaempleados(){
+
+        $datosempleados =
+        \DB::select(DB::raw("SELECT H.h_fechallegada, H.h_fechasalida,E.e_ci,E.e_nombre, E.e_apellido, E.fk_departamento
+            From Empleado E, Horario H, Asistencia A, Departamento D
+            Where E.e_ci = A.fk_empleado and
+            H.h_cod = A.Fk_horario and
+            D.d_numero = E.fk_departamento
+            Order by H.h_cod desc"));
+
+        return view('reporte.asistenciaempleados', compact('datosempleados'));
+
+    }
+
 
     public function viewingresovsegresos(){
 
@@ -26,9 +51,25 @@ class ReportesController extends Controller
 
     public function clientesfrecuentes(Request $request)
     {
-         
-    	 echo "aun no conectado clientes frecuentes";
-    	 echo $request->tienda;
+        $tiendas = \DB::table('tienda')->where('t_cod',$request->input('tienda'))->get();
+        foreach ($tiendas as $tienda);
+
+        $clientesfrecuentes =
+        \DB::select(DB::raw("SELECT T.t_cod, C.c_n_pnombre, C.c_n_papellido, count(C.c_n_pnombre)
+          from clientenatural C, usuario U, pedido P,
+          presupuesto Pr, venta V, Tienda T
+          where C.fk_usuario = U.u_username and
+          P.fk_usuario = U.u_username and
+          Pr.p_cod = P.fk_presupuesto and
+          V.fk_presupuesto = Pr.p_cod and
+          T.t_cod = $tienda->t_cod
+          group by T.t_cod, C.c_n_pnombre, C.c_n_papellido, V.v_fechafac
+          order by count(C.*) desc, V.v_fechafac desc
+          Limit 10"));
+
+          return
+          view('reporte.clientesfrecuentes', compact('clientesfrecuentes'));
+    	// echo $request->tienda;
     }
 
     public function viewclientesfrecuentes(){
@@ -54,8 +95,26 @@ class ReportesController extends Controller
     //
     public function productosranking(Request $request)
     {
-    	 echo "aun no conectado prod ranking";
-    	
+
+       $tiendas = \DB::table('tienda')->where('t_cod',$request->input('tienda'))->get();
+        foreach ($tiendas as $tienda);
+
+        $lugares = \DB::table('lugar')->where('l_cod',$request->input('lugar'))->get();
+        foreach ($lugares as $lugar);
+
+    	 $productos =
+        \DB::select(DB::raw("SELECT P.*
+                            from Producto P, Tienda T, Lugar L
+                            where
+                            T.fk_lugar = L.l_cod and
+                            P.fk_tienda = T.t_cod and
+                            T.t_cod = $tienda->t_cod and
+                            L.l_cod = $lugar->l_cod
+                            order by p_precio desc"));
+
+          return
+          view('reporte.vista-productosranking', compact('productos'));
+
     }
 
      public function viewproductosranking(){
@@ -68,7 +127,7 @@ class ReportesController extends Controller
 public function productosvendidos(Request $request)
     {
     	 echo "aun no conectado pr vendids";
-    	
+
     }
 
      public function viewproductosvendidos(){
@@ -82,8 +141,8 @@ public function productosvendidos(Request $request)
     public function puntoscanjeados(Request $request)
     {
     	 echo "aun no conectado puntoscanjeados";
-    	
-    
+
+
     }
 
      public function viewpuntoscanjeados(){
@@ -116,14 +175,14 @@ public function productosvendidos(Request $request)
     }
 
     public function viewclientemejores(){
-        
+
         return view('reporte.cincomejorestiempo');
 
     }
-    
+
 
     public function clientesconmaspuntos(){
-        
+
          $clientes  = DB::select(DB::raw(" select nat.c_n_pnombre as nombre, nat.c_n_papellido as apellido,nat.c_n_cedula as ci
             from clientenatural nat
             where nat.fk_usuario in (select u.u_username  from punto pu,usuario u, clientenatural cn, clientejuridico cj
@@ -146,11 +205,11 @@ public function productosvendidos(Request $request)
     }
 
     public function tiendaconmaspunto(){
-      $tiendas = DB::select(DB::raw("SELECT ti.t_nombre as nombre,sum(pu.pu_valor) as total FROM tienda ti,punto pu ,pedido pe, usuario u 
+      $tiendas = DB::select(DB::raw("SELECT ti.t_nombre as nombre,sum(pu.pu_valor) as total FROM tienda ti,punto pu ,pedido pe, usuario u
             WHERE pu.fk_usuario=u.u_username AND u.u_username= pe.fk_usuario AND pe.fk_tienda=ti.t_cod
             group by ti.t_nombre
             order by sum(pu.pu_valor) desc;  "));
-     
+
       return view('reporte.reportesmostrar.tiendaconmaspunto',compact('tiendas'));
 
     }

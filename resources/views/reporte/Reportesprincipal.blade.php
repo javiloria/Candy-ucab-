@@ -11,7 +11,7 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul >
-    	<li>ingresos vs egresos de cada tienda <a href="/ing-egre"> 	ir al reporte</a></li>
+    	<li>5 mejores clientes segun monto de compras realizadas<a href="/clientecompra"> 	ir al reporte</a></li>
     	<li> 10 clientes  más frecuentes por tienda y periodo de tiempo <a href="/cli-frec">	 ir al reporte</a></li>
     	<li> clientes con presupuestos que generaron compra por tienda y por periodo de tiempo <a href="/pre-compra">   	ir al reporte</a></li>
     	<li> Productos más vendido por tienda <a href="/pro-vendido"> 	ir al reporte</a></li>
