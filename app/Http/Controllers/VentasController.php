@@ -50,7 +50,9 @@ public function pagarpunto(Request $request){
           $ped_sta->fk_status =2;
           $ped_sta->save();
         $username= Auth::user()->u_username;
-         DB::table('punto')->where('fk_usuario',$username )->where('pu_valor',$request->punto)->delete();
+
+         $nuevo=$request->total-$request->punto;
+         \DB::table('punto')->where('fk_usuario',"<=",$username )->update(['pu_valor' => $nuevo]);
 
         
         $pedido= DB::table('pedido')->where('fk_usuario', $username)->get();

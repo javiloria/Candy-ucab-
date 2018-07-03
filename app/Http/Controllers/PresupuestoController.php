@@ -45,7 +45,7 @@ class PresupuestoController extends Controller
 
     public function store(Request $request)
     {
-      return $request;
+
         $pro_pre= new Pro_Pre();
       $montototal=0;  $ppcantidad=0;
       foreach ($request->carrito as $producto)  {
@@ -57,11 +57,7 @@ class PresupuestoController extends Controller
           $ppcantidad=$ppcantidad+1;
     }
 
-    $presupuesto= new Presupuesto();
-    $presupuesto->p_monto=$montototal;
-      //guardamos en la BD
-      $presupuesto->save();
-
+    
     $tiendas=DB::table('tienda')->where('t_tipotamano', 'Candy Shop - virtual')->get();
         $string=json_encode($tiendas[0]);
         $porciones = explode(":", $string);
@@ -69,12 +65,24 @@ class PresupuestoController extends Controller
         $porciones3 = explode(",", $porciones2[0]);
         $tienda= intval($porciones3[0]);
 
-        $pedido = new Pedido();
-        $pedido->p_nombre = 'pedido'.time();
+
+
+
+    $pedido = new Pedido();
+    $epa='pedido'.time();
+        $pedido->p_nombre = $epa;
+        $pedido->p_tipo="compra";
         $pedido->fk_usuario =Auth::user()->u_username;  
-        $pedido->fk_presupuesto = $presupuesto->p_cod;
         $pedido->fk_tienda=$tienda;
         $pedido->save();
+
+    $presupuesto= new Presupuesto();
+    $presupuesto->p_monto=$montototal;
+    $presupuesto->fk_pedido=$epa;
+      //guardamos en la BD
+      $presupuesto->save();
+
+        
 
 $pres =DB::select(DB::raw("SELECT p_cod from Presupuesto where p_monto =$montototal order by p_cod desc limit 1;"));
 

@@ -22,17 +22,11 @@
         
       <form class="form-group" action="{{ action('VentasController@pagarpunto') }}" method="POST" >
       @csrf
-                
+             
+<input type="hidden" name="total" value={{$total}}>   
         <label for="">Puntos</label>
         <div class="form-group">
-            <select name="punto" required>
-
-
-              @foreach($punto as $p)
-                 <option  value="{{$p->valor}}">{{$p->valor}} </option>
-                @endforeach
-
-            </select>
+            <input type="text" class="form-control input-lg" name= "punto" placeholder="Cantidad de Puntos" required />
         </div>
 
       </div>
