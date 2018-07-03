@@ -9,7 +9,7 @@ use CandyUcab\Pedido;
 use CandyUcab\Ped_sta;
 use CandyUcab\Tienda;
 use CandyUcab\Producto;
-
+use CandyUcab\Pago;
 class VentasController extends Controller
 {
     
@@ -50,13 +50,23 @@ public function pagarpunto(Request $request){
           $ped_sta->fk_status =2;
           $ped_sta->save();
         $username= Auth::user()->u_username;
+        //$pago= new Pago();
+        //$pago->p_monto=$request->punto;
+        //$pago->fk_pedido=$pedido;
+         
+
 
          $nuevo=$request->total-$request->punto;
-         \DB::table('punto')->where('fk_usuario',"<=",$username )->update(['pu_valor' => $nuevo]);
+         DB::table('punto')->where('fk_usuario',"<=",$username )->update(['pu_valor' => $nuevo]);
 
-        
+       //$puntos =DB::table('punto')->where('fk_usuario',"=",$username )->where('pu_valor',$nuevo)->get();
         $pedido= DB::table('pedido')->where('fk_usuario', $username)->get();
-       
+       /*foreach ($puntos as $key ) {
+         $pago->fk_punto=$key->pu_valor;
+       }
+      
+         $pago->save();
+         */
         //le paso a la vista todos los pedidos enla BD
       return view ('Pedido.pedido-index',compact('pedido'));
 
@@ -70,6 +80,8 @@ public function pagarpunto(Request $request){
         return view('metodosdepago.punto',compact('punto'));
     }
 
+    
+    
 
 
 

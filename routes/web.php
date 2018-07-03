@@ -116,7 +116,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/ventas-facturacion','VentasController@');
     Route::post('/ventas-facturacion','VentasController@facturacion');
     Route::get('/cliente-punto','ReportesController@clientesconmaspuntos');
-
+    Route::get('/tienda-punto','ReportesController@tiendaconmaspunto');
     //Rutas para enviar los puntos
     Route::resource('punto', 'PuntoController');
 

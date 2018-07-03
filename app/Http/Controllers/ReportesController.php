@@ -144,4 +144,14 @@ public function productosvendidos(Request $request)
         return view('reporte.reportesmostrar.clientes1',compact('clientes'));
 
     }
+
+    public function tiendaconmaspunto(){
+      $tiendas = DB::select(DB::raw("SELECT ti.t_nombre as nombre,sum(pu.pu_valor) as total FROM tienda ti,punto pu ,pedido pe, usuario u 
+            WHERE pu.fk_usuario=u.u_username AND u.u_username= pe.fk_usuario AND pe.fk_tienda=ti.t_cod
+            group by ti.t_nombre
+            order by sum(pu.pu_valor) desc;  "));
+     
+      return view('reporte.reportesmostrar.tiendaconmaspunto',compact('tiendas'));
+
+    }
 }
