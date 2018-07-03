@@ -18,9 +18,6 @@
 
         <div class="modal-body">
 
-
-               
-
           <label for="">tienda </label>
         <div class="form-group">
             <select name="tienda" >

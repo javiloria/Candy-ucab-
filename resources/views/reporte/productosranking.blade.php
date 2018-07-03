@@ -17,9 +17,6 @@
 
         <div class="modal-body">
 
-
-               
-
           <label for="">tienda </label>
         <div class="form-group">
             <select name="tienda" >
@@ -37,11 +34,6 @@
           <!-- Campo de entrada de fecha -->
            <input type="text" name="lugar">
           </div>
-
-
-          
-
-
 
                <div class="form-group">
                    <input type="submit"  class="btn btn-block btn-lg btn-primary" value="Generar Reporte"/>

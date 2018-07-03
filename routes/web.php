@@ -84,8 +84,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/pagar-punto','VentasController@pagarpunto');
     //rutas para los reportes
     //Reporte de ingresos vz egresos de cada tienda
-    Route::get('ing-egre','ReportesController@viewingresovsegresos');
-    Route::post('ing-egre','ReportesController@ingresosvsegresos');
+    Route::get('clientecompra','ReportesController@clientesporcompra');
+
     //Listado de los 10 clientes frecuentes por tienda ( mayor número de ventas ) por periodo de tiempo
      Route::get('cli-frec','ReportesController@viewclientesfrecuentes');
     Route::post('cli-frec','ReportesController@clientesfrecuentes');
@@ -101,14 +101,12 @@ Route::group(['middleware' => ['auth']], function() {
     //puntos canjeados por tienda y por lugar
     Route::get('punto-canjeado','ReportesController@viewpuntoscanjeados');
     Route::post('punto-canjeado','ReportesController@puntoscanjeados');
-    //mes mas rentable por lugar
-    Route::get('mes-rentable','ReportesController@viewmesmasrentablelugar');
-    Route::post('mes-rentable','ReportesController@mesmasrentablelugar');
 
-    //mes mas rentable por lugar
-    Route::get('cliente-mejores','ReportesController@viewclientemejores');
-    Route::post('cliente-mejores','ReportesController@clientemejores');
-    //ruta principal para reportes
+
+    //
+    Route::get('asistencia-empleados','ReportesController@asistenciaempleados');
+
+
     Route::view('/reportes','reporte.Reportesprincipal');
     //manejar ventas
     Route::get('/ventas-iniciar','VentasController@iniciarventaview');
