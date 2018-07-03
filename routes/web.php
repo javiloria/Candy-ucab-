@@ -113,8 +113,7 @@ Route::group(['middleware' => ['auth']], function() {
     //rutas para los reportes 
 
     //Reporte de ingresos vz egresos de cada tienda
-    Route::get('ing-egre','ReportesController@viewingresovsegresos');
-    Route::post('ing-egre','ReportesController@ingresosvsegresos');
+    Route::get('clientecompra','ReportesController@clientesporcompra');
 
     //Listado de los 10 clientes frecuentes por tienda ( mayor número de ventas ) por periodo de tiempo
      Route::get('cli-frec','ReportesController@viewclientesfrecuentes');
@@ -135,6 +134,9 @@ Route::group(['middleware' => ['auth']], function() {
     //puntos canjeados por tienda y por lugar
     Route::get('punto-canjeado','ReportesController@viewpuntoscanjeados');
     Route::post('punto-canjeado','ReportesController@puntoscanjeados');
+
+    //
+    Route::get('asistencia-empleados','ReportesController@asistenciaempleados');
 
     //ruta principal para reportes 
     Route::view('/reportes','reporte.Reportesprincipal');

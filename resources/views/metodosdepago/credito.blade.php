@@ -14,11 +14,6 @@
         
       <form class="form-group" action="/credito" method="POST" >
       @csrf
-
-        <label for="">Nombre Pedido</label>
-        <div class="form-group">
-            <input type="text" class="form-control input-lg" name= "nombre" placeholder="Nombre Pedido"/>
-        </div>
         
         <label for="">Numero de tarjeta</label>
         <div class="form-group">
@@ -38,6 +33,11 @@
                <option  value="Visa">Visa </option>
                <option  value="Platino">Platino</option>
             </select>
+        </div>
+
+         <label for="">Fecha Actual</label>
+        <div class="form-group">
+            <input type="text" class="form-control input-lg" name= "fechaact"  placeholder="Fecha Actual"/>
         </div>
 
         <label for="">Fecha vencimiento</label>

@@ -15,11 +15,6 @@
       <form class="form-group" action="/debito" method="POST" >
       @csrf
 
-        <label for="">Nombre Pedido</label>
-        <div class="form-group">
-            <input type="text" class="form-control input-lg" name= "nombre" placeholder="Nombre Pedido"/>
-        </div>
-
         <label for="">Numero</label>
         <div class="form-group">
             <input type="text" class="form-control input-lg" name= "numero" placeholder="Numero"/>
@@ -43,6 +38,12 @@
         <div class="form-group">
             <input type="text" class="form-control input-lg" name= "banco"  placeholder="Banco"/>
         </div>
+
+        <label for="">Fecha Actual</label>
+        <div class="form-group">
+            <input type="text" class="form-control input-lg" name= "fechaact"  placeholder="Fecha Actual"/>
+        </div>
+
         
 
       </div>
