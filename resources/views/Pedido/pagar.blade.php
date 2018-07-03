@@ -8,7 +8,7 @@
 <div class="text-center">
 
 	<h1> Por Favor Seleccione su metodo de Pago		</h1>
-	<a class="btn btn-primary btn-lg botoncito" href="#">Punto</a>
+	<a class="btn btn-primary btn-lg botoncito" href="/pagar-punto">Punto</a>
 	<a class="btn btn-primary btn-lg botoncito" href="#">Efectivo</a>
 	<a class="btn btn-primary btn-lg botoncito" href="/cheque/create">Cheque</a>
 	<a class="btn btn-primary btn-lg botoncito" href="/credito/create">Tarjeta Credito</a>

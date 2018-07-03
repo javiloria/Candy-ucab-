@@ -27,8 +27,9 @@
 				<b>Descripcion:</b> {{$oferta->o_descripcion}} <br>
 				<b>Precio:</b> {{$oferta->o_precio}} <br>
 			    </h5>
-
-			     <input type="checkbox" name='carrito[]'> <b> {{ __('Agregar al Carrito') }} </b>
+			    <form  action="/presupuestos" method="POST" class="form-group" >
+              @csrf
+			     <input type="checkbox" name='carrito[]' value="{{$producto->p_cod}}"> <b> {{ __('Agregar al Carrito') }} </b>
 			     <p> </p>
 
 				@if(Auth::user()->hasRole('admin'))
@@ -56,5 +57,5 @@
 		    <div class="form-group text-center">
 			<button type="submit" class="btn  btn-lg btn-primary">Realizar Compra</button>
 			</div>
-
+		</form>
 @stop

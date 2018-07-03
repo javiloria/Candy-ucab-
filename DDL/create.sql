@@ -543,11 +543,13 @@ CREATE TABLE PAGO(
   FK_credito integer,
   FK_debito integer,
   FK_cheque integer,
+  fk_punto integer,
   constraint PK_PAGO primary key(P_cod),
   constraint FK_Pago_pedido FOREIGN key(FK_pedido) references PEDIDO (P_nombre),
   constraint FK_Pago_debito FOREIGN key(FK_debito) references DEBITO (MP_cod ),
   constraint FK_Pago_credito FOREIGN key(FK_credito) references CREDITO (MP_cod ),
-  constraint FK_Pago_cheque FOREIGN key(FK_cheque) references CHEQUE (MP_cod )
+  constraint FK_Pago_cheque FOREIGN key(FK_cheque) references CHEQUE (MP_cod ),
+  constraint FK_Pago_punto FOREIGN key(fk_punto) references Punto (pu_cod )
 );
 
 create sequence pri_seq
